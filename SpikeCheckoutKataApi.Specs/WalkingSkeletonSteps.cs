@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -15,16 +16,15 @@ namespace SpikeCheckoutKataApi.Specs
 		}
 
 		[When(@"I hit the API")]
-		public void WhenIHitTheApi()
+		public async Task WhenIHitTheApi()
 		{
-			_browser.Get("http://spike-checkout-kata-api.local/");
+			await _browser.GetRoot();
 		}
 
 		[Then(@"I get an OK response")]
-		public void ThenIGetAnOkResponse()
+		public async Task ThenIGetAnOkResponse()
 		{
 			Assert.That(_browser.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 		}
-
 	}
 }

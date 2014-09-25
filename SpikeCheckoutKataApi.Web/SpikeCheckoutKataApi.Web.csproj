@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config">
@@ -48,6 +49,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RetrieveBasketHandler.cs" />
+    <Compile Include="CreateBasketHandler.cs" />
     <Compile Include="HttpHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
