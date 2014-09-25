@@ -9,6 +9,7 @@ namespace SpikeCheckoutKataApi.Specs
 	{
 		private readonly HttpClient _client;
 		private HttpResponseMessage _response;
+		private string _body;
 
 		public Browser()
 		{
@@ -29,16 +30,18 @@ namespace SpikeCheckoutKataApi.Specs
 		{
 			var content = Serializer.AsContent(entity);
 			_response = await _client.PostAsync(uri, content);
+			_body = await _response.Content.ReadAsStringAsync();
 		}
 
 		public async Task Get(Uri uri)
 		{
 			_response = await _client.GetAsync(uri);
+			_body = await _response.Content.ReadAsStringAsync();
 		}
 
-		public async Task<T> ResponseAs<T>()
+		public T ResponseAs<T>()
 		{
-			return await Serializer.Deserialize<T>(_response.Content);
+			return Serializer.Deserialize<T>(_body);
 		}
 	}
 }

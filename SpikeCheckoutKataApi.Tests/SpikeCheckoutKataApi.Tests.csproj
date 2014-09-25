@@ -32,15 +32,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InwardsAdapters\Basket_store_tests\Given_an_item_has_been_added_to_a_new_basket_when_that_basket_is_retrieved.cs" />
+    <Compile Include="InwardsAdapters\Basket_store_tests\When_a_basket_is_created.cs" />
+    <Compile Include="InwardsAdapters\Basket_store_tests\When_a_new_basket_is_retrieved.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpikeCheckoutKataApi.Web\SpikeCheckoutKataApi.Web.csproj">
+      <Project>{150E2CC9-7539-4F37-A2F6-E6FEA6194F41}</Project>
+      <Name>SpikeCheckoutKataApi.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

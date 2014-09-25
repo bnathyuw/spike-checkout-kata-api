@@ -49,9 +49,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RetrieveBasketHandler.cs" />
-    <Compile Include="CreateBasketHandler.cs" />
-    <Compile Include="HttpHandler.cs" />
+    <Compile Include="Http\AddItemToBasket\AddItemToBasketRequest.cs" />
+    <Compile Include="Http\AddItemToBasket\AddItemToBasketHandler.cs" />
+    <Compile Include="Data\BasketInStore.cs" />
+    <Compile Include="Http\RetrieveBasket\Basket.cs" />
+    <Compile Include="Data\BasketStore.cs" />
+    <Compile Include="Http\ModifyResponseTo.cs" />
+    <Compile Include="Http\InspectRequestTo.cs" />
+    <Compile Include="Http\RetrieveBasket\RetrieveBasketHandler.cs" />
+    <Compile Include="Http\CreateBasket\CreateBasketHandler.cs" />
+    <Compile Include="Http\HttpHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +69,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

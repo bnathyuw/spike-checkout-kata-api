@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace SpikeCheckoutKataApi.Web
+namespace SpikeCheckoutKataApi.Web.Http
 {
 	public class HttpHandler:IHttpHandler
 	{

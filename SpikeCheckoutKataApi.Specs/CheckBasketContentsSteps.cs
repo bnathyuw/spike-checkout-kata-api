@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -10,7 +9,7 @@ namespace SpikeCheckoutKataApi.Specs
 	public class CheckBasketContentsSteps
 	{
 		private readonly Browser _browser;
-		private Uri _basketUrl;
+		private Uri _basketUri;
 
 		public CheckBasketContentsSteps(Browser browser)
 		{
@@ -18,27 +17,44 @@ namespace SpikeCheckoutKataApi.Specs
 		}
 
 		[Given(@"I have a basket")]
-		public async Task GivenIHaveABasket()
+		public void GivenIHaveABasket()
 		{
-			await _browser.CreateBasket();
+			_browser.CreateBasket().Wait();
 
 			Assert.That(_browser.StatusCode, Is.EqualTo(HttpStatusCode.Created));
 
-			_basketUrl = _browser.Location;
+			_basketUri = _browser.Location;
 		}
 
 		[When(@"I check my basket")]
-		public async Task WhenICheckMyBasket()
+		public void WhenICheckMyBasket()
 		{
-			await _browser.RetrieveBasket(_basketUrl);
+			_browser.RetrieveBasket(_basketUri).Wait();
 		}
 
 		[Then(@"I have nothing in my basket")]
-		public async Task ThenIHaveNothingInMyBasket()
+		public void ThenIHaveNothingInMyBasket()
 		{
-			var basket = await _browser.ResponseAs<Basket>();
+			var basket = _browser.ResponseAs<Basket>();
 
 			Assert.That(basket.Contents, Is.Empty);
 		}
+
+		[Given(@"I add A to my basket")]
+		public void GivenIAddAToMyBasket()
+		{
+			_browser.AddToBasket(_basketUri, 'A').Wait();
+
+			Assert.That(_browser.StatusCode, Is.EqualTo(HttpStatusCode.Created));
+		}
+
+		[Then(@"my basket contains A")]
+		public void ThenMyBasketContainsA()
+		{
+			var basket = _browser.ResponseAs<Basket>();
+
+			Assert.That(basket.Contents, Is.EquivalentTo(new[] { 'A' }));
+		}
+
 	}
 }

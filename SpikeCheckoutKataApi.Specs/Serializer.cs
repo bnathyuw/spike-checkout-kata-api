@@ -1,5 +1,4 @@
 ﻿using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
 namespace SpikeCheckoutKataApi.Specs
@@ -14,9 +13,8 @@ namespace SpikeCheckoutKataApi.Specs
 			return new StringContent(basketJson);
 		}
 
-		public static async Task<T> Deserialize<T>(HttpContent httpContent)
+		public static T Deserialize<T>(string content)
 		{
-			var content = await httpContent.ReadAsStringAsync();
 			return JavaScriptSerializer.Deserialize<T>(content);
 		}
 	}

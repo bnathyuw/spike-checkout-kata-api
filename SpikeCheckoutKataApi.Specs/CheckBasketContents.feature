@@ -7,3 +7,9 @@ Scenario: Empty basket is empty
 	Given I have a basket
 	When I check my basket
 	Then I have nothing in my basket
+
+Scenario: Things I add to my basket show up when I check my basket
+	Given I have a basket
+	And I add A to my basket
+	When I check my basket
+	Then my basket contains A
