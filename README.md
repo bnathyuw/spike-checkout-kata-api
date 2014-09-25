@@ -1,0 +1,2 @@
+# Spike Checkout Kata API
+
