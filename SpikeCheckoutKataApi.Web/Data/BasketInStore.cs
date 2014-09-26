@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using SpikeCheckoutKataApi.Web.Http.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Web.Data
@@ -6,21 +7,15 @@ namespace SpikeCheckoutKataApi.Web.Data
 	public class BasketInStore
 	{
 		private readonly int _id;
-		private readonly List<char> _contents = new List<char>();
 
 		public BasketInStore(int id)
 		{
 			_id = id;
 		}
 
-		public void AddItem(char item)
+		public Basket ToBasketWithContents(IEnumerable<char> contents)
 		{
-			_contents.Add(item);
-		}
-
-		public Basket ToBasketResponse()
-		{
-			return new Basket(_contents.ToArray());
+			return new Basket(contents.ToArray());
 		}
 
 		public bool WithId(int id)

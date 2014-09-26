@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Web;
 using System.Web.Script.Serialization;
+using SpikeCheckoutKataApi.Web.Data;
 
 namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 {
@@ -31,26 +32,28 @@ namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 			get { return _itemRequest; }
 		}
 
-		public static AddItemToBasketRequest From(HttpRequest httpRequest)
+		public static ItemRequest From(HttpRequest httpRequest)
 		{
-			var id = httpRequest.GetBasketId();
+			var basketId = httpRequest.GetBasketId();
 			using(var stream = httpRequest.GetBufferlessInputStream())
 			using (var reader = new StreamReader(stream))
 			{
 				var body = reader.ReadToEnd();
 				var item = Serializer.Deserialize<ItemRequest>(body);
-				return new AddItemToBasketRequest(id, item);
+				item.BasketId = basketId;
+				return item;
 			}
 		}
 	}
 
 	public class ItemRequest
 	{
-		public char Code { get; set; }
+		public char Code { private get; set; }
+		public int BasketId { get; set; }
 
-		public char ToItemInStore()
+		public ItemInStore ToItemInStore()
 		{
-			return Code;
+			return new ItemInStore(Code, BasketId);
 		}
 	}
 }

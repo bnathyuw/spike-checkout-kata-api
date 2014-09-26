@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using SpikeCheckoutKataApi.Web.Http.AddItemToBasket;
 using SpikeCheckoutKataApi.Web.Http.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Web.Data
@@ -8,25 +7,22 @@ namespace SpikeCheckoutKataApi.Web.Data
 	public class BasketStore
 	{
 		private static int _currentId;
-		private static readonly List<BasketInStore> Members = new List<BasketInStore>();
+		private static readonly List<BasketInStore> Baskets = new List<BasketInStore>();
+		private readonly ItemStore _itemStore = new ItemStore();
 
 		public Basket GetBasket(int id)
 		{
-			return Members.Single(b => b.WithId(id)).ToBasketResponse();
+			var basketInStore = Baskets.Single(b => b.WithId(id));
+			var basketContents = _itemStore.GetForBasket(id);
+			return basketInStore.ToBasketWithContents(basketContents);
 		}
 
 		public int CreateBasket()
 		{
 			var id = GetNextId();
 			var basket = new BasketInStore(id);
-			Members.Add(basket);
+			Baskets.Add(basket);
 			return id;
-		}
-
-		public void AddItemToBasket(AddItemToBasketRequest addItemToBasketRequest)
-		{
-			var basket = Members.Single(b => b.WithId(addItemToBasketRequest.BasketId));
-			basket.AddItem(addItemToBasketRequest.ItemRequest.ToItemInStore());
 		}
 
 		private static int GetNextId()

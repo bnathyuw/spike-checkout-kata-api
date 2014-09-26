@@ -49,6 +49,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\ItemInStore.cs" />
+    <Compile Include="Data\ItemStore.cs" />
     <Compile Include="Http\AddItemToBasket\AddItemToBasketRequest.cs" />
     <Compile Include="Http\AddItemToBasket\AddItemToBasketHandler.cs" />
     <Compile Include="Data\BasketInStore.cs" />
