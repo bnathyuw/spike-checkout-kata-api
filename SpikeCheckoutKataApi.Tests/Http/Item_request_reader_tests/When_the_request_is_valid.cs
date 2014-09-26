@@ -11,7 +11,7 @@ namespace SpikeCheckoutKataApi.Tests.Http.Item_request_reader_tests
 	{
 		private MemoryStream _stream;
 		private StreamWriter _writer;
-		private ItemRequestReader _itemRequestReader;
+		private AddItemToBasketRequestReader _requestReader;
 		private const char ItemCode = 'A';
 		private const int BasketId = 1;
 
@@ -25,7 +25,7 @@ namespace SpikeCheckoutKataApi.Tests.Http.Item_request_reader_tests
 			_writer.Write(content);
 			_writer.Flush();
 			_stream.Position = 0;
-			_itemRequestReader = new ItemRequestReader();
+			_requestReader = new AddItemToBasketRequestReader();
 		}
 
 		[TearDown]
@@ -38,7 +38,7 @@ namespace SpikeCheckoutKataApi.Tests.Http.Item_request_reader_tests
 		[Test]
 		public void Then_the_item_is_read_correctly()
 		{
-			var itemRequest = _itemRequestReader.From(this);
+			var itemRequest = _requestReader.From(this);
 			Assert.That(itemRequest, Is.EqualTo(new ItemRequest(ItemCode, BasketId)));
 		}
 

@@ -18,9 +18,9 @@ namespace SpikeCheckoutKataApi.Web.Data
 			return new Basket(contents.ToArray());
 		}
 
-		public bool WithId(int id)
+		public bool Matching(RetrieveBasketRequest request)
 		{
-			return _id == id;
+			return request.Matches(_id);
 		}
 	}
 }

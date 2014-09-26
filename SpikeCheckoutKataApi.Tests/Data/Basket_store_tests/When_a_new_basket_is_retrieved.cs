@@ -15,7 +15,7 @@ namespace SpikeCheckoutKataApi.Tests.Data.Basket_store_tests
 			var basketStore = new BasketStore();
 
 			var basketId = basketStore.CreateBasket();
-			_basket = basketStore.GetBasket(basketId);
+			_basket = basketStore.GetBasket(new RetrieveBasketRequest(basketId));
 		}
 
 		[Test]

@@ -3,7 +3,7 @@ using System.Web;
 
 namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 {
-	public class ItemRequestReader
+	public class AddItemToBasketRequestReader
 	{
 		public ItemRequest From(HttpRequestBase httpRequest)
 		{

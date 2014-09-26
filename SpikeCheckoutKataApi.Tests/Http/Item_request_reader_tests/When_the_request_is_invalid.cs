@@ -11,7 +11,7 @@ namespace SpikeCheckoutKataApi.Tests.Http.Item_request_reader_tests
 	{
 		private MemoryStream _stream;
 		private StreamWriter _writer;
-		private ItemRequestReader _itemRequestReader;
+		private AddItemToBasketRequestReader _requestReader;
 		private const string InvalidItemCode = "123";
 		private const int BasketId = 1;
 
@@ -26,7 +26,7 @@ namespace SpikeCheckoutKataApi.Tests.Http.Item_request_reader_tests
 			_writer.Write(content);
 			_writer.Flush();
 			_stream.Position = 0;
-			_itemRequestReader = new ItemRequestReader();
+			_requestReader = new AddItemToBasketRequestReader();
 		}
 
 		[TearDown]
@@ -39,7 +39,7 @@ namespace SpikeCheckoutKataApi.Tests.Http.Item_request_reader_tests
 		[Test]
 		public void Then_a_validation_exception_is_thrown()
 		{
-			var exception = Assert.Throws<ValidationException>(() => _itemRequestReader.From(this));
+			var exception = Assert.Throws<ValidationException>(() => _requestReader.From(this));
 
 			Assert.That(exception.Message, Is.StringContaining("Invalid").And.StringContaining("code").And.StringContaining(InvalidItemCode));
 		}

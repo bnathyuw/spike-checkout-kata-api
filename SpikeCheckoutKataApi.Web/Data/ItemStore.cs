@@ -8,9 +8,9 @@ namespace SpikeCheckoutKataApi.Web.Data
 	{
 		private static readonly List<ItemInStore> Items = new List<ItemInStore>();
 
-		public IEnumerable<char> GetForBasket(int basketId)
+		public IEnumerable<char> GetMatching(RetrieveBasketRequest request)
 		{
-			return Items.Where(i => i.IsInBasket(basketId)).Select(i => i.ToItem());
+			return Items.Where(i => i.Matches(request)).Select(i => i.ToItem());
 		}
 
 		public void StoreItem(ItemRequest itemRequest)

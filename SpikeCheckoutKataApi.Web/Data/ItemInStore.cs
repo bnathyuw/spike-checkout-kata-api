@@ -11,9 +11,9 @@
 			_basketId = basketId;
 		}
 
-		public bool IsInBasket(int basketId)
+		public bool Matches(RetrieveBasketRequest request)
 		{
-			return _basketId == basketId;
+			return request.Matches(_basketId);
 		}
 
 		public char ToItem()
