@@ -2,7 +2,6 @@ using System.IO;
 using System.Web;
 using System.Web.Script.Serialization;
 using NUnit.Framework;
-using SpikeCheckoutKataApi.Web;
 using SpikeCheckoutKataApi.Web.Behaviour;
 using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 

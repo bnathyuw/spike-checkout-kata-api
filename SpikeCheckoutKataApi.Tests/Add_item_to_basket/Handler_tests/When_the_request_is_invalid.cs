@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Web;
 using NUnit.Framework;
-using SpikeCheckoutKataApi.Web;
 using SpikeCheckoutKataApi.Web.Behaviour;
 using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 
