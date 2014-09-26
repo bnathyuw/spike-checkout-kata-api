@@ -1,8 +1,9 @@
 ﻿using System.Net;
 using NUnit.Framework;
+using SpikeCheckoutKataApi.Specs.Support;
 using TechTalk.SpecFlow;
 
-namespace SpikeCheckoutKataApi.Specs
+namespace SpikeCheckoutKataApi.Specs.Steps
 {
 	[Binding]
 	public class WalkingSkeletonSteps

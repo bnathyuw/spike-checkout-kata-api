@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpikeCheckoutKataApi.Specs
+namespace SpikeCheckoutKataApi.Specs.Features
 {
     using TechTalk.SpecFlow;
     

@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Web.Script.Serialization;
 
-namespace SpikeCheckoutKataApi.Specs
+namespace SpikeCheckoutKataApi.Specs.Support
 {
 	public static class Serializer
 	{

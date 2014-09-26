@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace SpikeCheckoutKataApi.Specs
+namespace SpikeCheckoutKataApi.Specs.Support
 {
 	public static class UseBrowserTo
 	{

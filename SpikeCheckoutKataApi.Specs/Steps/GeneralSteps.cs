@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Net;
 using NUnit.Framework;
+using SpikeCheckoutKataApi.Specs.Entities;
+using SpikeCheckoutKataApi.Specs.Support;
 using TechTalk.SpecFlow;
 
-namespace SpikeCheckoutKataApi.Specs
+namespace SpikeCheckoutKataApi.Specs.Steps
 {
 	[Binding]
 	public class GeneralSteps

@@ -1,4 +1,4 @@
-﻿namespace SpikeCheckoutKataApi.Specs
+﻿namespace SpikeCheckoutKataApi.Specs.Entities
 {
 	public class Basket
 	{
