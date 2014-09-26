@@ -50,6 +50,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddItemToBasket\IAddItemToBasketRequestReader.cs" />
+    <Compile Include="AddItemToBasket\IStoreItems.cs" />
     <Compile Include="Data\ItemInStore.cs" />
     <Compile Include="Data\ItemStore.cs" />
     <Compile Include="RetrieveBasket\RetrieveBasketRequest.cs" />

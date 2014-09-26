@@ -5,7 +5,7 @@ using SpikeCheckoutKataApi.Web.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Web.Data
 {
-	public class ItemStore
+	public class ItemStore : IStoreItems
 	{
 		private static readonly List<ItemInStore> Items = new List<ItemInStore>();
 

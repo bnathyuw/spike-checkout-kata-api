@@ -1,19 +1,18 @@
 ﻿using System.Net;
 using System.Web;
-using SpikeCheckoutKataApi.Web.Data;
 using SpikeCheckoutKataApi.Web.Http;
 
 namespace SpikeCheckoutKataApi.Web.AddItemToBasket
 {
 	public class AddItemToBasketHandler : IHandler
 	{
-		private readonly ItemStore _itemStore;
-		private readonly AddItemToBasketRequestReader _readAddItemToBasketRequest;
+		private readonly IStoreItems _itemStore;
+		private readonly IAddItemToBasketRequestReader _readAddItemToBasketRequest;
 
-		public AddItemToBasketHandler()
+		public AddItemToBasketHandler(IStoreItems itemStore, IAddItemToBasketRequestReader requestReader)
 		{
-			_itemStore = new ItemStore();
-			_readAddItemToBasketRequest = new AddItemToBasketRequestReader();
+			_itemStore = itemStore;
+			_readAddItemToBasketRequest = requestReader;
 		}
 
 		public void ProcessRequest(HttpRequestBase httpRequest, HttpResponseBase httpResponse)
