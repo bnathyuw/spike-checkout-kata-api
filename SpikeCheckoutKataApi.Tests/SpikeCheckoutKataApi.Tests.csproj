@@ -41,9 +41,9 @@
     <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Basket_store_tests\Given_an_item_has_been_added_to_a_new_basket_when_that_basket_is_retrieved.cs" />
-    <Compile Include="Data\Basket_store_tests\When_a_basket_is_created.cs" />
-    <Compile Include="Data\Basket_store_tests\When_a_new_basket_is_retrieved.cs" />
+    <Compile Include="Data\Given_an_item_has_been_added_to_a_new_basket_when_that_basket_is_retrieved.cs" />
+    <Compile Include="Data\When_a_basket_is_created.cs" />
+    <Compile Include="Data\When_a_new_basket_is_retrieved.cs" />
     <Compile Include="Http\Item_request_reader_tests\When_the_request_is_invalid.cs" />
     <Compile Include="Http\Item_request_reader_tests\When_the_request_is_valid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
