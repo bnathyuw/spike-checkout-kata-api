@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace SpikeCheckoutKataApi.Specs.Support
@@ -19,21 +20,21 @@ namespace SpikeCheckoutKataApi.Specs.Support
 			await browser.Get(basketUri);
 		}
 
-		public static async Task GetRoot(this Browser browser)
-		{
-			await browser.Get(new Uri(ApiBaseUriString));
-		}
-
 		public static async Task AddToBasket(this Browser browser, Uri basketUri, char item)
 		{
-			var entity = new {Code = item};
-			await browser.Post(basketUri, entity);
+			await browser.AddToBasket(basketUri, item.ToString(CultureInfo.InvariantCulture));
 		}
 
 		public static async Task AddToBasket(this Browser browser, Uri basketUri, string item)
 		{
 			var entity = new { Code = item };
-			await browser.Post(basketUri, entity);
+			var itemsUri = new Uri(basketUri.OriginalString + "/items");
+			await browser.Post(itemsUri, entity);
+		}
+
+		public static async Task RemoveFromBasket(this Browser browser, Uri itemUri)
+		{
+			await browser.Delete(itemUri);
 		}
 	}
 }

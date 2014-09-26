@@ -50,9 +50,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\Http\DeleteItemFromBasketHttpHandler.cs" />
+    <Compile Include="Adapters\Http\HttpHandlerFactory.cs" />
     <Compile Include="Behaviour\AddItemToBasket\IReadRequests.cs" />
     <Compile Include="Behaviour\AddItemToBasket\IStoreItems.cs" />
     <Compile Include="Behaviour\CreateBasket\ICreateBaskets.cs" />
+    <Compile Include="Behaviour\DeleteItemFromBasket\Handler.cs" />
+    <Compile Include="Behaviour\DeleteItemFromBasket\IDeleteItemsFromBaskets.cs" />
+    <Compile Include="Behaviour\DeleteItemFromBasket\IReadRequests.cs" />
+    <Compile Include="Behaviour\DeleteItemFromBasket\Request.cs" />
+    <Compile Include="Behaviour\DeleteItemFromBasket\RequestReader.cs" />
     <Compile Include="Behaviour\RetrieveBasket\IGetBaskets.cs" />
     <Compile Include="Adapters\Data\ItemInStore.cs" />
     <Compile Include="Adapters\Data\ItemStore.cs" />
@@ -75,7 +82,7 @@
     <Compile Include="Behaviour\RetrieveBasket\Handler.cs" />
     <Compile Include="Adapters\Http\RetrieveBasketHttpHandler.cs" />
     <Compile Include="Adapters\Http\Handler.cs" />
-    <Compile Include="Adapters\Http\HttpHandler.cs" />
+    <Compile Include="Adapters\Http\NotFoundHttpHandler.cs" />
     <Compile Include="Behaviour\RetrieveBasket\RequestReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

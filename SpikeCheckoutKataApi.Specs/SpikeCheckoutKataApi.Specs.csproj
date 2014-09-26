@@ -61,12 +61,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CheckBasketContents.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\WalkingSkeleton.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WalkingSkeleton.feature</DependentUpon>
-    </Compile>
-    <Compile Include="Steps\WalkingSkeletonSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -78,10 +72,6 @@
     <None Include="Features\CheckBasketContents.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CheckBasketContents.feature.cs</LastGenOutput>
-    </None>
-    <None Include="Features\WalkingSkeleton.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>WalkingSkeleton.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

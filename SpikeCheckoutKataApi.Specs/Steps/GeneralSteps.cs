@@ -12,6 +12,7 @@ namespace SpikeCheckoutKataApi.Specs.Steps
 	{
 		private readonly Browser _browser;
 		private Uri _basketUri;
+		private Uri _itemUri;
 
 		public GeneralSteps(Browser browser)
 		{
@@ -48,9 +49,9 @@ namespace SpikeCheckoutKataApi.Specs.Steps
 			foreach (var item in items)
 			{
 				_browser.AddToBasket(_basketUri, item).Wait();
+				Assert.That(_browser.StatusCode, Is.EqualTo(HttpStatusCode.Created));
+				_itemUri = _browser.Location;
 			}
-
-			Assert.That(_browser.StatusCode, Is.EqualTo(HttpStatusCode.Created));
 		}
 
 		[Then(@"my basket contains ([ABCD]+)")]
@@ -78,6 +79,12 @@ namespace SpikeCheckoutKataApi.Specs.Steps
 		{
 			var error = _browser.ResponseAs<Error>();
 			Assert.That(error.Message, Is.StringContaining("code").And.StringContaining("Invalid").And.StringContaining(value));
+		}
+
+		[Given(@"I remove that item from my basket")]
+		public void GivenIRemoveThatItemFromMyBasket()
+		{
+			_browser.RemoveFromBasket(_itemUri).Wait();
 		}
 
 	}

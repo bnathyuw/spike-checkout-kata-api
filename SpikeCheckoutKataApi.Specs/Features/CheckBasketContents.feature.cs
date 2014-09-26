@@ -83,13 +83,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Things I add to my basket show up when I check my basket")]
+        [NUnit.Framework.DescriptionAttribute("Items I add to my basket show up when I check my basket")]
         [NUnit.Framework.TestCaseAttribute("A", null)]
         [NUnit.Framework.TestCaseAttribute("B", null)]
         [NUnit.Framework.TestCaseAttribute("AABBCD", null)]
-        public virtual void ThingsIAddToMyBasketShowUpWhenICheckMyBasket(string items, string[] exampleTags)
+        public virtual void ItemsIAddToMyBasketShowUpWhenICheckMyBasket(string items, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Things I add to my basket show up when I check my basket", exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Items I add to my basket show up when I check my basket", exampleTags);
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
@@ -100,6 +100,27 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I check my basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
  testRunner.Then(string.Format("my basket contains {0}", items), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Items I remove from my basket no longer appear in my basket")]
+        public virtual void ItemsIRemoveFromMyBasketNoLongerAppearInMyBasket()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Items I remove from my basket no longer appear in my basket", ((string[])(null)));
+#line 23
+this.ScenarioSetup(scenarioInfo);
+#line 24
+ testRunner.Given("I have a basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 25
+ testRunner.And("I add A to my basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 26
+ testRunner.And("I remove that item from my basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.When("I check my basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 28
+ testRunner.Then("I have nothing in my basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

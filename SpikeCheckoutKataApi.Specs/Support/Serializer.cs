@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Web.Script.Serialization;
+﻿using System.Web.Script.Serialization;
 
 namespace SpikeCheckoutKataApi.Specs.Support
 {
@@ -7,10 +6,9 @@ namespace SpikeCheckoutKataApi.Specs.Support
 	{
 		private static readonly JavaScriptSerializer JavaScriptSerializer = new JavaScriptSerializer();
 
-		public static StringContent AsContent(object entity)
+		public static string Serialize(object entity)
 		{
-			var basketJson = JavaScriptSerializer.Serialize(entity);
-			return new StringContent(basketJson);
+			return JavaScriptSerializer.Serialize(entity);
 		}
 
 		public static T Deserialize<T>(string content)

@@ -21,9 +21,10 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
 			{
 				var request = _readRequest.From(httpRequest);
 
-				_itemStore.StoreItem(request);
+				var itemId = _itemStore.StoreItem(request);
 
 				httpResponse.StatusCode = (int) HttpStatusCode.Created;
+				httpResponse.RedirectLocation = string.Format("http://spike-checkout-kata-api.local/baskets/{0}/items/{1}", request.BasketId, itemId);
 			}
 			catch (ValidationException badRequestException)
 			{

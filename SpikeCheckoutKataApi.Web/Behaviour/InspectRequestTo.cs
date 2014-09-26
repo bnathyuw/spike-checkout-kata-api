@@ -12,8 +12,14 @@ namespace SpikeCheckoutKataApi.Web.Behaviour
 
 		public static int GetBasketId(this HttpRequestBase request)
 		{
-			var regex = new Regex("^/baskets/(?<basketId>\\d+)$");
+			var regex = new Regex("^/baskets/(?<basketId>\\d+)");
 			return Int32.Parse(regex.Match(request.Path).Groups["basketId"].Value);
+		}
+
+		public static int GetItemId(this HttpRequestBase request)
+		{
+			var regex = new Regex("^/baskets/(\\d+)/items/(?<itemId>\\d+)");
+			return Int32.Parse(regex.Match(request.Path).Groups["itemId"].Value);
 		}
 
 		public static dynamic ReadBodyAsDynamic(this HttpRequestBase httpRequest)

@@ -2,6 +2,6 @@
 {
 	public interface IStoreItems
 	{
-		void StoreItem(Request request);
+		int StoreItem(Request request);
 	}
 }

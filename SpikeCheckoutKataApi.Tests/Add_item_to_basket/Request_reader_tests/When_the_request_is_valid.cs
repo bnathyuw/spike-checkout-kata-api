@@ -13,7 +13,6 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Request_reader_tests
 		private StreamWriter _writer;
 		private RequestReader _requestReader;
 		private const char ItemCode = 'A';
-		private const int BasketId = 444;
 
 		[SetUp]
 		public void SetUp()
@@ -49,7 +48,7 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Request_reader_tests
 
 		public override string Path
 		{
-			get { return "/baskets/" + BasketId; }
+			get { return "/baskets/444"; }
 		}
 	}
 }

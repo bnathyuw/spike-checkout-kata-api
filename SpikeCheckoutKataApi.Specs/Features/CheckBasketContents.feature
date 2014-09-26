@@ -8,7 +8,7 @@ Scenario: Empty basket is empty
 	When I check my basket
 	Then I have nothing in my basket
 
-Scenario Outline: Things I add to my basket show up when I check my basket
+Scenario Outline: Items I add to my basket show up when I check my basket
 	Given I have a basket
 	And I add <items> to my basket
 	When I check my basket
@@ -19,3 +19,10 @@ Examples:
 	| A      |
 	| B      |
 	| AABBCD |
+
+Scenario: Items I remove from my basket no longer appear in my basket
+	Given I have a basket
+	And I add A to my basket
+	And I remove that item from my basket
+	When I check my basket
+	Then I have nothing in my basket

@@ -13,9 +13,14 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
 			_basketId = basketId;
 		}
 
-		public ItemInStore ToItemInStore()
+		public int BasketId
 		{
-			return new ItemInStore(_code, _basketId);
+			get { return _basketId; }
+		}
+
+		public ItemInStore ToItemInStoreWithId(int id)
+		{
+			return new ItemInStore(_code, BasketId, id);
 		}
 	}
 }

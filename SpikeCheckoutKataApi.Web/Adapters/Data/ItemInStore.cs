@@ -6,11 +6,13 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 	{
 		private readonly char _code;
 		private readonly int _basketId;
+		private readonly int _id;
 
-		public ItemInStore(char code, int basketId)
+		public ItemInStore(char code, int basketId, int id)
 		{
 			_code = code;
 			_basketId = basketId;
+			_id = id;
 		}
 
 		public bool Matches(Request request)
@@ -21,6 +23,11 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 		public char ToItem()
 		{
 			return _code;
+		}
+
+		public bool Matches(Behaviour.DeleteItemFromBasket.Request request)
+		{
+			return request.Matches(_basketId, _id);
 		}
 	}
 }
