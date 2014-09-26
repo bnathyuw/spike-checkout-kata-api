@@ -1,4 +1,4 @@
-﻿namespace SpikeCheckoutKataApi.Web.Data
+﻿namespace SpikeCheckoutKataApi.Web.RetrieveBasket
 {
 	public class RetrieveBasketRequest
 	{

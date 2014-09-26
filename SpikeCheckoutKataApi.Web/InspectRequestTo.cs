@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Serialization;
 
-namespace SpikeCheckoutKataApi.Web.Http
+namespace SpikeCheckoutKataApi.Web
 {
 	public static class InspectRequestTo
 	{

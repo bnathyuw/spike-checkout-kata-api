@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Script.Serialization;
 using NUnit.Framework;
-using SpikeCheckoutKataApi.Web.Http.AddItemToBasket;
+using SpikeCheckoutKataApi.Web.AddItemToBasket;
 
 namespace SpikeCheckoutKataApi.Tests.Http.Item_request_reader_tests
 {

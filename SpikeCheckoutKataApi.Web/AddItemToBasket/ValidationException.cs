@@ -1,6 +1,6 @@
 using System;
 
-namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
+namespace SpikeCheckoutKataApi.Web.AddItemToBasket
 {
 	public class ValidationException : Exception
 	{

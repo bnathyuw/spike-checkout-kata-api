@@ -1,6 +1,6 @@
 ﻿using SpikeCheckoutKataApi.Web.Data;
 
-namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
+namespace SpikeCheckoutKataApi.Web.AddItemToBasket
 {
 	public struct ItemRequest
 	{

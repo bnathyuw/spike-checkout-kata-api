@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using SpikeCheckoutKataApi.Web.Http.AddItemToBasket;
+using SpikeCheckoutKataApi.Web.AddItemToBasket;
+using SpikeCheckoutKataApi.Web.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Web.Data
 {

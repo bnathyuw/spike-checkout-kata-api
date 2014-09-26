@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Data;
-using SpikeCheckoutKataApi.Web.Http.RetrieveBasket;
+using SpikeCheckoutKataApi.Web.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Tests.Data
 {

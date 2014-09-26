@@ -1,7 +1,8 @@
 ﻿using System.Web;
 using SpikeCheckoutKataApi.Web.Data;
+using SpikeCheckoutKataApi.Web.Http;
 
-namespace SpikeCheckoutKataApi.Web.Http.RetrieveBasket
+namespace SpikeCheckoutKataApi.Web.RetrieveBasket
 {
 	public class RetrieveBasketRequestReader
 	{

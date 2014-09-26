@@ -1,10 +1,11 @@
 ﻿using System.Net;
 using System.Web;
 using SpikeCheckoutKataApi.Web.Data;
+using SpikeCheckoutKataApi.Web.Http;
 
-namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
+namespace SpikeCheckoutKataApi.Web.AddItemToBasket
 {
-	public class AddItemToBasketHandler:IHttpHandler, IHandler
+	public class AddItemToBasketHandler : IHandler
 	{
 		private readonly ItemStore _itemStore;
 		private readonly AddItemToBasketRequestReader _readAddItemToBasketRequest;
@@ -13,11 +14,6 @@ namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 		{
 			_itemStore = new ItemStore();
 			_readAddItemToBasketRequest = new AddItemToBasketRequestReader();
-		}
-
-		public void ProcessRequest(HttpContext context)
-		{
-			ProcessRequest(new HttpRequestWrapper(context.Request), new HttpResponseWrapper(context.Response));
 		}
 
 		public void ProcessRequest(HttpRequestBase httpRequest, HttpResponseBase httpResponse)
@@ -36,7 +32,5 @@ namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 				httpResponse.WriteBody(badRequestException.ToError());
 			}
 		}
-
-		public bool IsReusable { get { return false; } }
 	}
 }

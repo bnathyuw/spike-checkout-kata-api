@@ -1,4 +1,6 @@
-﻿namespace SpikeCheckoutKataApi.Web.Data
+﻿using SpikeCheckoutKataApi.Web.RetrieveBasket;
+
+namespace SpikeCheckoutKataApi.Web.Data
 {
 	public class ItemInStore
 	{

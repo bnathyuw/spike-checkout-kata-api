@@ -52,22 +52,26 @@
   <ItemGroup>
     <Compile Include="Data\ItemInStore.cs" />
     <Compile Include="Data\ItemStore.cs" />
-    <Compile Include="Data\RetrieveBasketRequest.cs" />
-    <Compile Include="Http\AddItemToBasket\AddItemToBasketRequest.cs" />
-    <Compile Include="Http\AddItemToBasket\AddItemToBasketHandler.cs" />
+    <Compile Include="RetrieveBasket\RetrieveBasketRequest.cs" />
+    <Compile Include="AddItemToBasket\AddItemToBasketHandler.cs" />
+    <Compile Include="AddItemToBasket\AddItemToBasketRequest.cs" />
+    <Compile Include="Http\AddItemToBasketHttpHandler.cs" />
     <Compile Include="Data\BasketInStore.cs" />
+    <Compile Include="CreateBasket\CreateBasketHandler.cs" />
     <Compile Include="Http\IHandler.cs" />
-    <Compile Include="Http\AddItemToBasket\ValidationException.cs" />
-    <Compile Include="Http\AddItemToBasket\Error.cs" />
-    <Compile Include="Http\AddItemToBasket\AddItemToBasketRequestReader.cs" />
-    <Compile Include="Http\RetrieveBasket\Basket.cs" />
+    <Compile Include="AddItemToBasket\ValidationException.cs" />
+    <Compile Include="AddItemToBasket\Error.cs" />
+    <Compile Include="AddItemToBasket\AddItemToBasketRequestReader.cs" />
+    <Compile Include="RetrieveBasket\Basket.cs" />
     <Compile Include="Data\BasketStore.cs" />
-    <Compile Include="Http\ModifyResponseTo.cs" />
-    <Compile Include="Http\InspectRequestTo.cs" />
-    <Compile Include="Http\RetrieveBasket\RetrieveBasketHandler.cs" />
-    <Compile Include="Http\CreateBasket\CreateBasketHandler.cs" />
+    <Compile Include="ModifyResponseTo.cs" />
+    <Compile Include="InspectRequestTo.cs" />
+    <Compile Include="Http\HttpHandlerWrapper.cs" />
+    <Compile Include="RetrieveBasket\RetrieveBasketHandler.cs" />
+    <Compile Include="Http\RetrieveBasketHttpHandler.cs" />
+    <Compile Include="Http\CreateBasketHttpHandler.cs" />
     <Compile Include="Http\HttpHandler.cs" />
-    <Compile Include="Http\RetrieveBasket\RetrieveBasketRequestReader.cs" />
+    <Compile Include="RetrieveBasket\RetrieveBasketRequestReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
