@@ -7,15 +7,17 @@ namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 	public class AddItemToBasketHandler:IHttpHandler
 	{
 		private readonly ItemStore _itemStore;
+		private readonly ItemRequestReader _readItemRequest;
 
 		public AddItemToBasketHandler()
 		{
 			_itemStore = new ItemStore();
+			_readItemRequest = new ItemRequestReader();
 		}
 
 		public void ProcessRequest(HttpContext context)
 		{
-			var request = AddItemToBasketRequest.From(context.Request);
+			var request = _readItemRequest.From(context.Request);
 
 			_itemStore.StoreItem(request);
 			

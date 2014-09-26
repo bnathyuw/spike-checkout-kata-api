@@ -38,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -54,6 +55,7 @@
     <Compile Include="Http\AddItemToBasket\AddItemToBasketRequest.cs" />
     <Compile Include="Http\AddItemToBasket\AddItemToBasketHandler.cs" />
     <Compile Include="Data\BasketInStore.cs" />
+    <Compile Include="Http\AddItemToBasket\ItemRequestReader.cs" />
     <Compile Include="Http\RetrieveBasket\Basket.cs" />
     <Compile Include="Data\BasketStore.cs" />
     <Compile Include="Http\ModifyResponseTo.cs" />
