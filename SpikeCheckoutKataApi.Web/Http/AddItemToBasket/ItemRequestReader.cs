@@ -16,8 +16,9 @@ namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 			{
 				var body = reader.ReadToEnd();
 				dynamic item = Serializer.DeserializeObject(body);
+				var code = Char.Parse(item["Code"]);
 				var basketId = httpRequest.GetBasketId();
-				return new ItemRequest(Char.Parse(item["Code"]), basketId);
+				return new ItemRequest(code, basketId);
 			}
 		}
 	}
