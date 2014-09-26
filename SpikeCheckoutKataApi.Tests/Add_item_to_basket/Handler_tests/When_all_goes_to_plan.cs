@@ -10,17 +10,16 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 	{
 		private ItemRequest _itemStored;
 		private readonly ItemRequest _itemFromRequest = new ItemRequest('Z', 999);
-		private AddItemToBasketHandler _handler;
 		private int _statusCode;
 
-		[SetUp]
-		public void SetUp()
+		[TestFixtureSetUp]
+		public void TestFixtureSetUp()
 		{
 			_itemStored = null;
 
-			_handler = new AddItemToBasketHandler(this, this);
+			var handler = new AddItemToBasketHandler(this, this);
 
-			_handler.ProcessRequest(null, this);
+			handler.ProcessRequest(null, this);
 		}
 
 		[Test]

@@ -8,7 +8,6 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 	[TestFixture]
 	public class When_the_request_is_invalid : HttpResponseBase, IReadAddItemToBasketRequests
 	{
-		private AddItemToBasketHandler _handler;
 		private int _statusCode;
 		private string _body;
 		private const string ExpectedValidationMessage = "Validation exception message";
@@ -16,9 +15,9 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 		[SetUp]
 		public void SetUp()
 		{
-			_handler = new AddItemToBasketHandler(null, this);
+			var handler = new AddItemToBasketHandler(null, this);
 
-			_handler.ProcessRequest(null, this);
+			handler.ProcessRequest(null, this);
 		}
 
 		[Test]
