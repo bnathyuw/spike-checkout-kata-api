@@ -6,7 +6,7 @@ using SpikeCheckoutKataApi.Web.AddItemToBasket;
 namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 {
 	[TestFixture]
-	public class When_the_request_is_invalid : HttpResponseBase, IAddItemToBasketRequestReader
+	public class When_the_request_is_invalid : HttpResponseBase, IReadAddItemToBasketRequests
 	{
 		private AddItemToBasketHandler _handler;
 		private int _statusCode;

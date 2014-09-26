@@ -6,7 +6,7 @@ using SpikeCheckoutKataApi.Web.AddItemToBasket;
 namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 {
 	[TestFixture]
-	public class When_all_goes_to_plan : HttpResponseBase, IStoreItems, IAddItemToBasketRequestReader
+	public class When_all_goes_to_plan : HttpResponseBase, IStoreItems, IReadAddItemToBasketRequests
 	{
 		private ItemRequest _itemStored;
 		private readonly ItemRequest _itemFromRequest = new ItemRequest('Z', 999);

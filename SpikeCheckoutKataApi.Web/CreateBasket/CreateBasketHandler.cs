@@ -1,15 +1,14 @@
 ﻿using System.Net;
 using System.Web;
-using SpikeCheckoutKataApi.Web.Data;
 using SpikeCheckoutKataApi.Web.Http;
 
 namespace SpikeCheckoutKataApi.Web.CreateBasket
 {
 	public class CreateBasketHandler : IHandler
 	{
-		private readonly BasketStore _basketStore;
+		private readonly ICreateBaskets _basketStore;
 
-		public CreateBasketHandler(BasketStore basketStore)
+		public CreateBasketHandler(ICreateBaskets basketStore)
 		{
 			_basketStore = basketStore;
 		}

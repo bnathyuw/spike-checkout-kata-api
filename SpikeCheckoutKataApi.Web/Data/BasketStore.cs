@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SpikeCheckoutKataApi.Web.CreateBasket;
 using SpikeCheckoutKataApi.Web.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Web.Data
 {
-	public class BasketStore
+	public class BasketStore : IGetBaskets, ICreateBaskets
 	{
 		private static int _currentId;
 		private static readonly List<BasketInStore> Baskets = new List<BasketInStore>();

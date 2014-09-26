@@ -1,15 +1,14 @@
 ﻿using System.Web;
-using SpikeCheckoutKataApi.Web.Data;
 using SpikeCheckoutKataApi.Web.Http;
 
 namespace SpikeCheckoutKataApi.Web.RetrieveBasket
 {
 	public class RetrieveBasketHandler:IHandler
 	{
-		private readonly BasketStore _basketStore;
-		private readonly RetrieveBasketRequestReader _retrieveBasketRequestReader;
+		private readonly IGetBaskets _basketStore;
+		private readonly IReadRetrieveBasketRequests _retrieveBasketRequestReader;
 
-		public RetrieveBasketHandler(BasketStore basketStore, RetrieveBasketRequestReader retrieveBasketRequestReader)
+		public RetrieveBasketHandler(IGetBaskets basketStore, IReadRetrieveBasketRequests retrieveBasketRequestReader)
 		{
 			_basketStore = basketStore;
 			_retrieveBasketRequestReader = retrieveBasketRequestReader;
