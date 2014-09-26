@@ -7,7 +7,7 @@ namespace SpikeCheckoutKataApi.Web.Http
 	{
 		private static readonly JavaScriptSerializer Serializer = new JavaScriptSerializer();
 
-		public static void WriteBody(this HttpResponse httpResponse, object response)
+		public static void WriteBody(this HttpResponseBase httpResponse, object response)
 		{
 			httpResponse.Write(Serializer.Serialize(response));
 		}

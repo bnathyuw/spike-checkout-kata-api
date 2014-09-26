@@ -4,7 +4,7 @@ using SpikeCheckoutKataApi.Web.Data;
 
 namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 {
-	public class AddItemToBasketHandler:IHttpHandler
+	public class AddItemToBasketHandler:IHttpHandler, IHandler
 	{
 		private readonly ItemStore _itemStore;
 		private readonly AddItemToBasketRequestReader _readAddItemToBasketRequest;
@@ -17,18 +17,23 @@ namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 
 		public void ProcessRequest(HttpContext context)
 		{
+			ProcessRequest(new HttpRequestWrapper(context.Request), new HttpResponseWrapper(context.Response));
+		}
+
+		public void ProcessRequest(HttpRequestBase httpRequest, HttpResponseBase httpResponse)
+		{
 			try
 			{
-				var request = _readAddItemToBasketRequest.From(new HttpRequestWrapper(context.Request));
+				var request = _readAddItemToBasketRequest.From(httpRequest);
 
 				_itemStore.StoreItem(request);
 
-				context.Response.StatusCode = (int) HttpStatusCode.Created;
+				httpResponse.StatusCode = (int) HttpStatusCode.Created;
 			}
 			catch (ValidationException badRequestException)
 			{
-				context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
-				context.Response.WriteBody(badRequestException.ToError());
+				httpResponse.StatusCode = (int) HttpStatusCode.BadRequest;
+				httpResponse.WriteBody(badRequestException.ToError());
 			}
 		}
 

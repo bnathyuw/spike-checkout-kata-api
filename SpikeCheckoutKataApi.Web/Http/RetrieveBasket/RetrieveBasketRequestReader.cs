@@ -5,7 +5,7 @@ namespace SpikeCheckoutKataApi.Web.Http.RetrieveBasket
 {
 	public class RetrieveBasketRequestReader
 	{
-		public RetrieveBasketRequest Read(HttpRequestWrapper httpRequestWrapper)
+		public RetrieveBasketRequest Read(HttpRequestBase httpRequestWrapper)
 		{
 			var basketId = httpRequestWrapper.GetBasketId();
 			return new RetrieveBasketRequest(basketId);
