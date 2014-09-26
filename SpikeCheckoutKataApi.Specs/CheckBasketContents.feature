@@ -8,8 +8,13 @@ Scenario: Empty basket is empty
 	When I check my basket
 	Then I have nothing in my basket
 
-Scenario: Things I add to my basket show up when I check my basket
+Scenario Outline: Things I add to my basket show up when I check my basket
 	Given I have a basket
-	And I add A to my basket
+	And I add <items> to my basket
 	When I check my basket
-	Then my basket contains A
+	Then my basket contains <items>
+
+Examples: 
+	| items |
+	| A     |
+	| B     |

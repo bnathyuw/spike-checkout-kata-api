@@ -84,19 +84,21 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Things I add to my basket show up when I check my basket")]
-        public virtual void ThingsIAddToMyBasketShowUpWhenICheckMyBasket()
+        [NUnit.Framework.TestCaseAttribute("A", null)]
+        [NUnit.Framework.TestCaseAttribute("B", null)]
+        public virtual void ThingsIAddToMyBasketShowUpWhenICheckMyBasket(string items, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Things I add to my basket show up when I check my basket", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Things I add to my basket show up when I check my basket", exampleTags);
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.Given("I have a basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
- testRunner.And("I add A to my basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I add {0} to my basket", items), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
  testRunner.When("I check my basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.Then("my basket contains A", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("my basket contains {0}", items), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

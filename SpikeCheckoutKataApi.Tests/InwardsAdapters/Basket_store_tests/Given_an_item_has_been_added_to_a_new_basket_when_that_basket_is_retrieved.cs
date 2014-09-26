@@ -14,10 +14,10 @@ namespace SpikeCheckoutKataApi.Tests.InwardsAdapters.Basket_store_tests
 		public void TestFixtureSetUp()
 		{
 			var basketStore = new BasketStore();
-			
+
 			var basketId = basketStore.CreateBasket();
-			basketStore.AddItemToBasket(new AddItemToBasketRequest(basketId, 'A'));
-			_basket = basketStore.GetBasket(new AddItemToBasketRequest(basketId, 'A').Id);
+			basketStore.AddItemToBasket(new AddItemToBasketRequest(basketId, new ItemRequest {Code = 'A'}));
+			_basket = basketStore.GetBasket(basketId);
 		}
 
 		[Test]

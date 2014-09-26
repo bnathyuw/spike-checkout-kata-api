@@ -40,20 +40,23 @@ namespace SpikeCheckoutKataApi.Specs
 			Assert.That(basket.Contents, Is.Empty);
 		}
 
-		[Given(@"I add A to my basket")]
-		public void GivenIAddAToMyBasket()
+		[Given(@"I add ([ABCD]+) to my basket")]
+		public void GivenIAddItemsToMyBasket(string items)
 		{
-			_browser.AddToBasket(_basketUri, 'A').Wait();
+			foreach (var item in items)
+			{
+				_browser.AddToBasket(_basketUri, item).Wait();
+			}
 
 			Assert.That(_browser.StatusCode, Is.EqualTo(HttpStatusCode.Created));
 		}
 
-		[Then(@"my basket contains A")]
-		public void ThenMyBasketContainsA()
+		[Then(@"my basket contains ([ABCD]+)")]
+		public void ThenMyBasketContainsItems(string items)
 		{
 			var basket = _browser.ResponseAs<Basket>();
 
-			Assert.That(basket.Contents, Is.EquivalentTo(new[] { 'A' }));
+			Assert.That(basket.Contents, Is.EquivalentTo(items));
 		}
 
 	}

@@ -7,8 +7,8 @@ namespace SpikeCheckoutKataApi.Web.Http
 	{
 		public static int GetBasketId(this HttpRequest request)
 		{
-			var regex = new Regex("^/baskets/(?<Id>\\d+)$");
-			return int.Parse(regex.Match(request.Path).Groups["Id"].Value);
+			var regex = new Regex("^/baskets/(?<basketId>\\d+)$");
+			return int.Parse(regex.Match(request.Path).Groups["basketId"].Value);
 		}
 	}
 }
