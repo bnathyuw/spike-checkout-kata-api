@@ -2,7 +2,9 @@ using System.IO;
 using System.Web;
 using System.Web.Script.Serialization;
 using NUnit.Framework;
-using SpikeCheckoutKataApi.Web.AddItemToBasket;
+using SpikeCheckoutKataApi.Web;
+using SpikeCheckoutKataApi.Web.Behaviour;
+using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 
 namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Request_reader_tests
 {
@@ -11,7 +13,7 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Request_reader_tests
 	{
 		private MemoryStream _stream;
 		private StreamWriter _writer;
-		private AddItemToBasketRequestReader _requestReader;
+		private RequestReader _requestReader;
 		private const string InvalidItemCode = "123";
 		private const int BasketId = 1;
 
@@ -26,7 +28,7 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Request_reader_tests
 			_writer.Write(content);
 			_writer.Flush();
 			_stream.Position = 0;
-			_requestReader = new AddItemToBasketRequestReader();
+			_requestReader = new RequestReader();
 		}
 
 		[TearDown]

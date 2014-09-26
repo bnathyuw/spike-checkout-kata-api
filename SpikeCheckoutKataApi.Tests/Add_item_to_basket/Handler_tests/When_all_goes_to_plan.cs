@@ -1,15 +1,15 @@
 ﻿using System.Net;
 using System.Web;
 using NUnit.Framework;
-using SpikeCheckoutKataApi.Web.AddItemToBasket;
+using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 
 namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 {
 	[TestFixture]
-	public class When_all_goes_to_plan : HttpResponseBase, IStoreItems, IReadAddItemToBasketRequests
+	public class When_all_goes_to_plan : HttpResponseBase, IStoreItems, IReadRequests
 	{
-		private ItemRequest _itemStored;
-		private readonly ItemRequest _itemFromRequest = new ItemRequest('Z', 999);
+		private Request _itemStored;
+		private readonly Request _itemFromRequest = new Request('Z', 999);
 		private int _statusCode;
 
 		[TestFixtureSetUp]
@@ -17,7 +17,7 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 		{
 			_itemStored = null;
 
-			var handler = new AddItemToBasketHandler(this, this);
+			var handler = new Handler(this, this);
 
 			handler.ProcessRequest(null, this);
 		}
@@ -34,14 +34,14 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 			Assert.That(_statusCode, Is.EqualTo((int)HttpStatusCode.Created));
 		}
 
-		public ItemRequest From(HttpRequestBase httpRequest)
+		public Request From(HttpRequestBase httpRequest)
 		{
 			return _itemFromRequest;
 		}
 
-		public void StoreItem(ItemRequest itemRequest)
+		public void StoreItem(Request request)
 		{
-			_itemStored = itemRequest;
+			_itemStored = request;
 		}
 
 		public override int StatusCode { set { _statusCode = value; } }

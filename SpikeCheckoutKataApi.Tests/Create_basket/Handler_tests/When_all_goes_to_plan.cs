@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web;
 using NUnit.Framework;
-using SpikeCheckoutKataApi.Web.CreateBasket;
+using SpikeCheckoutKataApi.Web.Behaviour.CreateBasket;
 
 namespace SpikeCheckoutKataApi.Tests.Create_basket.Handler_tests
 {
@@ -15,7 +15,7 @@ namespace SpikeCheckoutKataApi.Tests.Create_basket.Handler_tests
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			var handler = new CreateBasketHandler(this);
+			var handler = new Handler(this);
 
 			handler.ProcessRequest(null, this);
 		}

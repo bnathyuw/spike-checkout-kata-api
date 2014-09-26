@@ -50,33 +50,33 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddItemToBasket\IReadAddItemToBasketRequests.cs" />
-    <Compile Include="AddItemToBasket\IStoreItems.cs" />
-    <Compile Include="CreateBasket\ICreateBaskets.cs" />
-    <Compile Include="RetrieveBasket\IGetBaskets.cs" />
-    <Compile Include="Data\ItemInStore.cs" />
-    <Compile Include="Data\ItemStore.cs" />
-    <Compile Include="RetrieveBasket\IReadRetrieveBasketRequests.cs" />
-    <Compile Include="RetrieveBasket\RetrieveBasketRequest.cs" />
-    <Compile Include="AddItemToBasket\AddItemToBasketHandler.cs" />
-    <Compile Include="AddItemToBasket\AddItemToBasketRequest.cs" />
-    <Compile Include="Http\AddItemToBasketHttpHandler.cs" />
-    <Compile Include="Data\BasketInStore.cs" />
-    <Compile Include="CreateBasket\CreateBasketHandler.cs" />
-    <Compile Include="Http\IHandler.cs" />
-    <Compile Include="AddItemToBasket\ValidationException.cs" />
-    <Compile Include="AddItemToBasket\Error.cs" />
-    <Compile Include="AddItemToBasket\AddItemToBasketRequestReader.cs" />
-    <Compile Include="RetrieveBasket\Basket.cs" />
-    <Compile Include="Data\BasketStore.cs" />
-    <Compile Include="ModifyResponseTo.cs" />
-    <Compile Include="InspectRequestTo.cs" />
-    <Compile Include="Http\HttpHandlerWrapper.cs" />
-    <Compile Include="RetrieveBasket\RetrieveBasketHandler.cs" />
-    <Compile Include="Http\RetrieveBasketHttpHandler.cs" />
-    <Compile Include="Http\CreateBasketHttpHandler.cs" />
-    <Compile Include="Http\HttpHandler.cs" />
-    <Compile Include="RetrieveBasket\RetrieveBasketRequestReader.cs" />
+    <Compile Include="Behaviour\AddItemToBasket\IReadRequests.cs" />
+    <Compile Include="Behaviour\AddItemToBasket\IStoreItems.cs" />
+    <Compile Include="Behaviour\CreateBasket\ICreateBaskets.cs" />
+    <Compile Include="Behaviour\RetrieveBasket\IGetBaskets.cs" />
+    <Compile Include="Adapters\Data\ItemInStore.cs" />
+    <Compile Include="Adapters\Data\ItemStore.cs" />
+    <Compile Include="Behaviour\RetrieveBasket\IReadRequests.cs" />
+    <Compile Include="Behaviour\RetrieveBasket\Request.cs" />
+    <Compile Include="Behaviour\AddItemToBasket\Handler.cs" />
+    <Compile Include="Behaviour\AddItemToBasket\Request.cs" />
+    <Compile Include="Adapters\Http\AddItemToBasketHttpHandler.cs" />
+    <Compile Include="Adapters\Data\BasketInStore.cs" />
+    <Compile Include="Behaviour\CreateBasket\Handler.cs" />
+    <Compile Include="Adapters\Http\IHandler.cs" />
+    <Compile Include="Behaviour\ValidationException.cs" />
+    <Compile Include="Behaviour\Error.cs" />
+    <Compile Include="Behaviour\AddItemToBasket\RequestReader.cs" />
+    <Compile Include="Behaviour\RetrieveBasket\BasketResponse.cs" />
+    <Compile Include="Adapters\Data\BasketStore.cs" />
+    <Compile Include="Behaviour\ModifyResponseTo.cs" />
+    <Compile Include="Behaviour\InspectRequestTo.cs" />
+    <Compile Include="Adapters\Http\HttpHandlerWrapper.cs" />
+    <Compile Include="Behaviour\RetrieveBasket\Handler.cs" />
+    <Compile Include="Adapters\Http\RetrieveBasketHttpHandler.cs" />
+    <Compile Include="Adapters\Http\Handler.cs" />
+    <Compile Include="Adapters\Http\HttpHandler.cs" />
+    <Compile Include="Behaviour\RetrieveBasket\RequestReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

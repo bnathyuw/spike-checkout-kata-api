@@ -1,12 +1,14 @@
 ﻿using System.Net;
 using System.Web;
 using NUnit.Framework;
-using SpikeCheckoutKataApi.Web.AddItemToBasket;
+using SpikeCheckoutKataApi.Web;
+using SpikeCheckoutKataApi.Web.Behaviour;
+using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 
 namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 {
 	[TestFixture]
-	public class When_the_request_is_invalid : HttpResponseBase, IReadAddItemToBasketRequests
+	public class When_the_request_is_invalid : HttpResponseBase, IReadRequests
 	{
 		private int _statusCode;
 		private string _body;
@@ -15,7 +17,7 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 		[SetUp]
 		public void SetUp()
 		{
-			var handler = new AddItemToBasketHandler(null, this);
+			var handler = new Handler(null, this);
 
 			handler.ProcessRequest(null, this);
 		}
@@ -32,7 +34,7 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 			Assert.That(_body, Is.StringContaining(ExpectedValidationMessage));
 		}
 
-		public ItemRequest From(HttpRequestBase httpRequest)
+		public Request From(HttpRequestBase httpRequest)
 		{
 			throw new ValidationException(ExpectedValidationMessage);
 		}

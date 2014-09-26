@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SpikeCheckoutKataApi.Web.Data;
+using SpikeCheckoutKataApi.Web.Adapters.Data;
 
 namespace SpikeCheckoutKataApi.Tests.Data
 {
