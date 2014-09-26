@@ -6,13 +6,12 @@ using SpikeCheckoutKataApi.Web.AddItemToBasket;
 namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 {
 	[TestFixture]
-	public class When_all_goes_to_plan : IStoreItems, IAddItemToBasketRequestReader
+	public class When_all_goes_to_plan : HttpResponseBase, IStoreItems, IAddItemToBasketRequestReader
 	{
 		private ItemRequest _itemStored;
 		private readonly ItemRequest _itemFromRequest = new ItemRequest('Z', 999);
 		private AddItemToBasketHandler _handler;
-		private Response _response;
-		private Request _request;
+		private int _statusCode;
 
 		[SetUp]
 		public void SetUp()
@@ -21,9 +20,7 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 
 			_handler = new AddItemToBasketHandler(this, this);
 
-			_response = new Response();
-			_request = new Request();
-			_handler.ProcessRequest(_request, _response);
+			_handler.ProcessRequest(null, this);
 		}
 
 		[Test]
@@ -35,12 +32,11 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 		[Test]
 		public void Then_the_response_has_a_status_code_of_created()
 		{
-			Assert.That(_response.StatusCode, Is.EqualTo((int)HttpStatusCode.Created));
+			Assert.That(_statusCode, Is.EqualTo((int)HttpStatusCode.Created));
 		}
 
 		public ItemRequest From(HttpRequestBase httpRequest)
 		{
-			Assert.That(httpRequest, Is.EqualTo(_request), "httpRequest not recognised");
 			return _itemFromRequest;
 		}
 
@@ -49,14 +45,7 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
 			_itemStored = itemRequest;
 		}
 
-		private class Response : HttpResponseBase
-		{
-			public override int StatusCode { get; set; }
-		}
-
-		private class Request : HttpRequestBase
-		{
-		}
+		public override int StatusCode { set { _statusCode = value; } }
 	}
 
 }
