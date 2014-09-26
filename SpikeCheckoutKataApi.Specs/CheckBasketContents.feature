@@ -15,6 +15,7 @@ Scenario Outline: Things I add to my basket show up when I check my basket
 	Then my basket contains <items>
 
 Examples: 
-	| items |
-	| A     |
-	| B     |
+	| items  |
+	| A      |
+	| B      |
+	| AABBCD |

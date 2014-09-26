@@ -86,6 +86,7 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Things I add to my basket show up when I check my basket")]
         [NUnit.Framework.TestCaseAttribute("A", null)]
         [NUnit.Framework.TestCaseAttribute("B", null)]
+        [NUnit.Framework.TestCaseAttribute("AABBCD", null)]
         public virtual void ThingsIAddToMyBasketShowUpWhenICheckMyBasket(string items, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Things I add to my basket show up when I check my basket", exampleTags);
