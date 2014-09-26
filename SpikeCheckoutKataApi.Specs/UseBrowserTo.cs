@@ -29,5 +29,11 @@ namespace SpikeCheckoutKataApi.Specs
 			var entity = new {Code = item};
 			await browser.Post(basketUri, entity);
 		}
+
+		public static async Task AddToBasket(this Browser browser, Uri basketUri, string item)
+		{
+			var entity = new { Code = item };
+			await browser.Post(basketUri, entity);
+		}
 	}
 }

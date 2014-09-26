@@ -17,11 +17,19 @@ namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 
 		public void ProcessRequest(HttpContext context)
 		{
-			var request = _readItemRequest.From(context.Request);
+			try
+			{
+				var request = _readItemRequest.From(new HttpRequestWrapper(context.Request));
 
-			_itemStore.StoreItem(request);
-			
-			context.Response.StatusCode = (int) HttpStatusCode.Created;
+				_itemStore.StoreItem(request);
+
+				context.Response.StatusCode = (int) HttpStatusCode.Created;
+			}
+			catch (ValidationException badRequestException)
+			{
+				context.Response.StatusCode = (int) HttpStatusCode.BadRequest;
+				context.Response.WriteBody(badRequestException.ToError());
+			}
 		}
 
 		public bool IsReusable { get { return false; } }

@@ -2,7 +2,7 @@
 
 namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 {
-	public class ItemRequest
+	public struct ItemRequest
 	{
 		private readonly char _code;
 		private readonly int _basketId;

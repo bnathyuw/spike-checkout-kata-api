@@ -1,25 +1,28 @@
 using System;
-using System.IO;
 using System.Web;
-using System.Web.Script.Serialization;
 
 namespace SpikeCheckoutKataApi.Web.Http.AddItemToBasket
 {
-	internal class ItemRequestReader
+	public class ItemRequestReader
 	{
-		private static readonly JavaScriptSerializer Serializer = new JavaScriptSerializer();
-
-		public ItemRequest From(HttpRequest httpRequest)
+		public ItemRequest From(HttpRequestBase httpRequest)
 		{
-			using(var stream = httpRequest.GetBufferlessInputStream())
-			using (var reader = new StreamReader(stream))
+			var item = httpRequest.ReadBodyAsDynamic();
+
+			var code = ReadCode(item);
+			var basketId = httpRequest.GetBasketId();
+			return new ItemRequest(code, basketId);
+		}
+
+		private static char ReadCode(dynamic item)
+		{
+			var value = item["Code"];
+			char code;
+			if (!Char.TryParse(value, out code))
 			{
-				var body = reader.ReadToEnd();
-				dynamic item = Serializer.DeserializeObject(body);
-				var code = Char.Parse(item["Code"]);
-				var basketId = httpRequest.GetBasketId();
-				return new ItemRequest(code, basketId);
+				throw new ValidationException("Invalid item code :" + value);
 			}
+			return code;
 		}
 	}
 }

@@ -1,14 +1,32 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace SpikeCheckoutKataApi.Web.Http
 {
 	public static class InspectRequestTo
 	{
-		public static int GetBasketId(this HttpRequest request)
+		private static readonly JavaScriptSerializer Serializer = new JavaScriptSerializer();
+
+		public static int GetBasketId(this HttpRequestBase request)
 		{
 			var regex = new Regex("^/baskets/(?<basketId>\\d+)$");
-			return int.Parse(regex.Match(request.Path).Groups["basketId"].Value);
+			return Int32.Parse(regex.Match(request.Path).Groups["basketId"].Value);
+		}
+
+		public static dynamic ReadBodyAsDynamic(this HttpRequestBase httpRequest)
+		{
+			var body = httpRequest.ReadBody();
+			return Serializer.DeserializeObject(body);
+		}
+
+		private static string ReadBody(this HttpRequestBase httpRequest)
+		{
+			using (var stream = httpRequest.GetBufferlessInputStream())
+			using (var reader = new StreamReader(stream))
+				return reader.ReadToEnd();
 		}
 	}
 }

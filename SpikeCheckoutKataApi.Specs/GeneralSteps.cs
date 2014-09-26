@@ -6,12 +6,12 @@ using TechTalk.SpecFlow;
 namespace SpikeCheckoutKataApi.Specs
 {
 	[Binding]
-	public class CheckBasketContentsSteps
+	public class GeneralSteps
 	{
 		private readonly Browser _browser;
 		private Uri _basketUri;
 
-		public CheckBasketContentsSteps(Browser browser)
+		public GeneralSteps(Browser browser)
 		{
 			_browser = browser;
 		}
@@ -57,6 +57,25 @@ namespace SpikeCheckoutKataApi.Specs
 			var basket = _browser.ResponseAs<Basket>();
 
 			Assert.That(basket.Contents, Is.EquivalentTo(items));
+		}
+
+		[When(@"I try to add (.+) to my basket")]
+		public void WhenITryToAddZToMyBasket(string item)
+		{
+			_browser.AddToBasket(_basketUri, item).Wait();
+		}
+
+		[Then(@"I get a Bad Request response")]
+		public void ThenIGetABadRequestResponse()
+		{
+			Assert.That(_browser.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+		}
+
+		[Then(@"I get an invalid request error for value (.*)")]
+		public void ThenIGetAnInvalidRequestErrorForValue(string value)
+		{
+			var error = _browser.ResponseAs<Error>();
+			Assert.That(error.Message, Is.StringContaining("code").And.StringContaining("Invalid").And.StringContaining(value));
 		}
 
 	}

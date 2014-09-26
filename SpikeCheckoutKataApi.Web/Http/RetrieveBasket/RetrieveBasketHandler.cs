@@ -14,7 +14,7 @@ namespace SpikeCheckoutKataApi.Web.Http.RetrieveBasket
 
 		public void ProcessRequest(HttpContext context)
 		{
-			var id = context.Request.GetBasketId();
+			var id = new HttpRequestWrapper(context.Request).GetBasketId();
 			var basketResponse = _basketStore.GetBasket(id);
 			context.Response.WriteBody(basketResponse);
 		}
