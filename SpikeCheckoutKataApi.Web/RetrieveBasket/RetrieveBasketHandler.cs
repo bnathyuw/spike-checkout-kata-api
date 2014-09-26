@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Net;
+using System.Web;
 using SpikeCheckoutKataApi.Web.Http;
 
 namespace SpikeCheckoutKataApi.Web.RetrieveBasket
@@ -18,6 +19,7 @@ namespace SpikeCheckoutKataApi.Web.RetrieveBasket
 		{
 			var getBasketRequest = _retrieveBasketRequestReader.Read(httpRequestWrapper);
 			var basketResponse = _basketStore.GetBasket(getBasketRequest);
+			httpResponse.StatusCode = (int) HttpStatusCode.OK;
 			httpResponse.WriteBody(basketResponse);
 		}
 	}
