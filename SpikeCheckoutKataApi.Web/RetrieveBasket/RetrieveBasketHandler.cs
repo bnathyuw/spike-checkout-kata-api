@@ -9,10 +9,10 @@ namespace SpikeCheckoutKataApi.Web.RetrieveBasket
 		private readonly BasketStore _basketStore;
 		private readonly RetrieveBasketRequestReader _retrieveBasketRequestReader;
 
-		public RetrieveBasketHandler()
+		public RetrieveBasketHandler(BasketStore basketStore, RetrieveBasketRequestReader retrieveBasketRequestReader)
 		{
-			_basketStore = new BasketStore();
-			_retrieveBasketRequestReader = new RetrieveBasketRequestReader();
+			_basketStore = basketStore;
+			_retrieveBasketRequestReader = retrieveBasketRequestReader;
 		}
 
 		public void ProcessRequest(HttpRequestBase httpRequestWrapper, HttpResponseBase httpResponse)

@@ -9,9 +9,9 @@ namespace SpikeCheckoutKataApi.Web.CreateBasket
 	{
 		private readonly BasketStore _basketStore;
 
-		public CreateBasketHandler()
+		public CreateBasketHandler(BasketStore basketStore)
 		{
-			_basketStore = new BasketStore();
+			_basketStore = basketStore;
 		}
 
 		public void ProcessRequest(HttpRequestBase httpRequest, HttpResponseBase httpResponse)
