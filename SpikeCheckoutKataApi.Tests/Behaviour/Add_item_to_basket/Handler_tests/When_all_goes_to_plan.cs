@@ -3,7 +3,7 @@ using System.Web;
 using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 
-namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
+namespace SpikeCheckoutKataApi.Tests.Behaviour.Add_item_to_basket.Handler_tests
 {
 	[TestFixture]
 	public class When_all_goes_to_plan : HttpResponseBase, IStoreItems, IReadRequests

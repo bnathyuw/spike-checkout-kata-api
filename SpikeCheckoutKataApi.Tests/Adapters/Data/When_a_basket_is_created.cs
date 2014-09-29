@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Adapters.Data;
 
-namespace SpikeCheckoutKataApi.Tests.Data
+namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 {
 	[TestFixture]
 	public class When_a_basket_is_created

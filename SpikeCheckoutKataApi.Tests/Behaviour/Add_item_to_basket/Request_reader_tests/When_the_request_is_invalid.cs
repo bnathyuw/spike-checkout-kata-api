@@ -1,18 +1,20 @@
-﻿using System.IO;
+using System.IO;
 using System.Web;
 using System.Web.Script.Serialization;
 using NUnit.Framework;
+using SpikeCheckoutKataApi.Web.Behaviour;
 using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 
-namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Request_reader_tests
+namespace SpikeCheckoutKataApi.Tests.Behaviour.Add_item_to_basket.Request_reader_tests
 {
 	[TestFixture]
-	public class When_the_request_is_valid : HttpRequestBase
+	public class When_the_request_is_invalid : HttpRequestBase
 	{
 		private MemoryStream _stream;
 		private StreamWriter _writer;
 		private RequestReader _requestReader;
-		private const char ItemCode = 'A';
+		private const string InvalidItemCode = "123";
+		private const int BasketId = 1;
 
 		[SetUp]
 		public void SetUp()
@@ -20,7 +22,8 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Request_reader_tests
 			_stream = new MemoryStream();
 			_writer = new StreamWriter(_stream);
 			var serializer = new JavaScriptSerializer();
-			var content = serializer.Serialize(new {Code = ItemCode});
+			
+			var content = serializer.Serialize(new {Code = InvalidItemCode});
 			_writer.Write(content);
 			_writer.Flush();
 			_stream.Position = 0;
@@ -35,10 +38,11 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Request_reader_tests
 		}
 
 		[Test]
-		public void Then_the_item_can_be_read()
+		public void Then_a_validation_exception_is_thrown()
 		{
-			var itemRequest = _requestReader.From(this);
-			Assert.That(itemRequest, Is.Not.Null);
+			var exception = Assert.Throws<ValidationException>(() => _requestReader.From(this));
+
+			Assert.That(exception.Message, Is.StringContaining("Invalid").And.StringContaining("code").And.StringContaining(InvalidItemCode));
 		}
 
 		public override Stream GetBufferlessInputStream()
@@ -48,7 +52,7 @@ namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Request_reader_tests
 
 		public override string Path
 		{
-			get { return "/baskets/444"; }
+			get { return "/baskets/" + BasketId; }
 		}
 	}
 }

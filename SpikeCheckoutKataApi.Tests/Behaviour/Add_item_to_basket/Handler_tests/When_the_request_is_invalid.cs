@@ -4,7 +4,7 @@ using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Behaviour;
 using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 
-namespace SpikeCheckoutKataApi.Tests.Add_item_to_basket.Handler_tests
+namespace SpikeCheckoutKataApi.Tests.Behaviour.Add_item_to_basket.Handler_tests
 {
 	[TestFixture]
 	public class When_the_request_is_invalid : HttpResponseBase, IReadRequests

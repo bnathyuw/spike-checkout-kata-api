@@ -3,7 +3,7 @@ using System.Web;
 using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Behaviour.CreateBasket;
 
-namespace SpikeCheckoutKataApi.Tests.Create_basket.Handler_tests
+namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Handler_tests
 {
 	[TestFixture]
 	public class When_all_goes_to_plan : HttpResponseBase, ICreateBaskets

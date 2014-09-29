@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket;
 
-namespace SpikeCheckoutKataApi.Tests.Delete_item_from_basket.Request_reader_tests
+namespace SpikeCheckoutKataApi.Tests.Behaviour.Delete_item_from_basket.Request_reader_tests
 {
 	[TestFixture]
 	public class When_the_request_is_valid : HttpRequestBase

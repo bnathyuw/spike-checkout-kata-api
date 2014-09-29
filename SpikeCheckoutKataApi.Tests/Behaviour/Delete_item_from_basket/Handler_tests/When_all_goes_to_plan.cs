@@ -3,7 +3,7 @@ using System.Web;
 using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket;
 
-namespace SpikeCheckoutKataApi.Tests.Delete_item_from_basket.Handler_tests
+namespace SpikeCheckoutKataApi.Tests.Behaviour.Delete_item_from_basket.Handler_tests
 {
 	[TestFixture]
 	public class When_all_goes_to_plan : HttpResponseBase, IDeleteItemsFromBaskets, IReadRequests

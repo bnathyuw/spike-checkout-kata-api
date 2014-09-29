@@ -2,7 +2,7 @@
 using SpikeCheckoutKataApi.Web.Adapters.Data;
 using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
 
-namespace SpikeCheckoutKataApi.Tests.Data
+namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 {
 	[TestFixture]
 	public class When_a_new_basket_is_retrieved
