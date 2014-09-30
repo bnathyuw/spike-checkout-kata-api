@@ -28,7 +28,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Retrieve_basket.Handler_tests
 		[Test]
 		public void Then_the_response_shows_the_contents_of_the_basket()
 		{
-			Assert.That(_body, Is.StringContaining("{\"Contents\":[\"A\",\"B\",\"C\",\"D\",\"E\"]}"));
+			Assert.That(_body, Is.StringContaining("\"Contents\":[\"A\",\"B\",\"C\",\"D\",\"E\"]"));
 		}
 
 		public override int StatusCode
@@ -43,7 +43,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Retrieve_basket.Handler_tests
 
 		public BasketResponse GetBasket(Request request)
 		{
-			return new BasketResponse("ABCDE".ToCharArray());
+			return new BasketResponse("ABCDE".ToCharArray(), null);
 		}
 
 		public override void Write(string body)

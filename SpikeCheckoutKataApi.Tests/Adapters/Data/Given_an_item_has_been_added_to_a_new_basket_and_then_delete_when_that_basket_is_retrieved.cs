@@ -1,6 +1,9 @@
 ﻿using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Adapters.Data;
 using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
+using RetrieveBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket.Request;
+using CreateBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.CreateBasket.Request;
+using AddItemToBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket.Request;
 
 namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 {
@@ -15,9 +18,9 @@ namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 			var basketStore = new BasketStore();
 			var itemStore = new ItemStore();
 
-			var basketId = basketStore.CreateBasket();
-			itemStore.StoreItem(new Web.Behaviour.AddItemToBasket.Request('A', basketId));
-			_basketResponse = basketStore.GetBasket(new Request(basketId));
+			var basketId = basketStore.CreateBasket(new CreateBasketRequest(null));
+			itemStore.StoreItem(new AddItemToBasketRequest('A', basketId));
+			_basketResponse = basketStore.GetBasket(new RetrieveBasketRequest(basketId));
 		}
 
 		[Test]

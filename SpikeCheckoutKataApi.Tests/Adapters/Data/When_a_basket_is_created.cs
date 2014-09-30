@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Adapters.Data;
+using SpikeCheckoutKataApi.Web.Behaviour.CreateBasket;
 
 namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 {
@@ -13,7 +14,7 @@ namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 		{
 			var basketStore = new BasketStore();
 
-			_basketId = basketStore.CreateBasket();
+			_basketId = basketStore.CreateBasket(new Request(null));
 		}
 
 		[Test]

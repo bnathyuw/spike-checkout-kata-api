@@ -8,10 +8,10 @@ namespace SpikeCheckoutKataApi.Specs.Support
 	{
 		private const string ApiBaseUriString = "http://spike-checkout-kata-api.local/";
 
-		public static async Task CreateBasket(this Browser browser)
+		public static async Task CreateBasket(this Browser browser, string shopperName)
 		{
 			var uri = new Uri(ApiBaseUriString + "baskets");
-			var entity = new {Shopper = "Bloggs"};
+			var entity = new {Shopper = shopperName};
 			await browser.Post(uri, entity);
 		}
 

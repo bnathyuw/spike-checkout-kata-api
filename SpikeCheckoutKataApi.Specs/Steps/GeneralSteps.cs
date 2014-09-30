@@ -19,14 +19,20 @@ namespace SpikeCheckoutKataApi.Specs.Steps
 			_browser = browser;
 		}
 
-		[Given(@"I have a basket")]
-		public void GivenIHaveABasket()
+		[Given(@"I create a basket with the name (.*)")]
+		public void GivenICreateABasketWithTheName(string shopperName)
 		{
-			_browser.CreateBasket().Wait();
+			_browser.CreateBasket(shopperName).Wait();
 
 			Assert.That(_browser.StatusCode, Is.EqualTo(HttpStatusCode.Created));
 
 			_basketUri = _browser.Location;
+		}
+
+		[Given(@"I have a basket")]
+		public void GivenIHaveABasket()
+		{
+			GivenICreateABasketWithTheName(null);
 		}
 
 		[When(@"I check my basket")]
@@ -34,6 +40,14 @@ namespace SpikeCheckoutKataApi.Specs.Steps
 		{
 			_browser.RetrieveBasket(_basketUri).Wait();
 		}
+
+		[Then(@"my basket is assigned to the name (.*)")]
+		public void ThenMyBasketIsAssignedToTheName(string shopperName)
+		{
+			var basket = _browser.ResponseAs<Basket>();
+			Assert.That(basket.Shopper, Is.EqualTo(shopperName));
+		}
+
 
 		[Then(@"I have nothing in my basket")]
 		public void ThenIHaveNothingInMyBasket()

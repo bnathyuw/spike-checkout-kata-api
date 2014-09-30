@@ -50,6 +50,7 @@
     <Compile Include="Adapters\Data\When_a_new_basket_is_retrieved.cs" />
     <Compile Include="Behaviour\Add_item_to_basket\Request_reader_tests\When_the_request_is_invalid.cs" />
     <Compile Include="Behaviour\Add_item_to_basket\Request_reader_tests\When_the_request_is_valid.cs" />
+    <Compile Include="Behaviour\Create_basket\Request_reader_tests\When_the_request_is_valid.cs" />
     <Compile Include="Behaviour\Delete_item_from_basket\Handler_tests\When_all_goes_to_plan.cs" />
     <Compile Include="Behaviour\Delete_item_from_basket\Request_reader_tests\When_the_request_is_valid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

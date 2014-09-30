@@ -6,7 +6,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Http
 	public class CreateBasketHttpHandler : HttpHandlerWrapper
 	{
 		public CreateBasketHttpHandler()
-			: base(new Handler(new BasketStore()))
+			: base(new Handler(new BasketStore(), new RequestReader()))
 		{
 		}
 	}

@@ -50,6 +50,11 @@
       <DependentUpon>BadRequest.feature</DependentUpon>
     </Compile>
     <Compile Include="Entities\Error.cs" />
+    <Compile Include="Features\BasicBasketInformation.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BasicBasketInformation.feature</DependentUpon>
+    </Compile>
     <Compile Include="Support\UseBrowserTo.cs" />
     <Compile Include="Entities\Basket.cs" />
     <Compile Include="Support\Browser.cs" />
@@ -67,6 +72,10 @@
     <None Include="Features\BadRequest.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>BadRequest.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\BasicBasketInformation.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>BasicBasketInformation.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Features\CheckBasketContents.feature">
