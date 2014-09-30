@@ -1,6 +1,4 @@
-﻿using SpikeCheckoutKataApi.Web.Adapters.Data;
-
-namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
+﻿namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
 {
 	public class ItemTemplate : IItemTemplate
 	{

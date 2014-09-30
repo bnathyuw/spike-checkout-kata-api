@@ -15,6 +15,11 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 		Request From(HttpRequestBase httpRequest);
 	}
 
+	public interface IBasketTemplate
+	{
+		string CompleteWith(int basketId);
+	}
+
 	public class Handler : IHandler
 	{
 		private readonly ICreateBaskets _basketStore;

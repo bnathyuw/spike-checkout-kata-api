@@ -1,6 +1,4 @@
-﻿using SpikeCheckoutKataApi.Web.Adapters.Data;
-
-namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
+﻿namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 {
 	public class BasketTemplate : IBasketTemplate
 	{

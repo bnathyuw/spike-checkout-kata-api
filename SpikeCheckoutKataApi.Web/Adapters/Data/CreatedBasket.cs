@@ -1,10 +1,7 @@
-﻿namespace SpikeCheckoutKataApi.Web.Adapters.Data
-{
-	public interface IBasketTemplate
-	{
-		string CompleteWith(int basketId);
-	}
+﻿using SpikeCheckoutKataApi.Web.Behaviour.CreateBasket;
 
+namespace SpikeCheckoutKataApi.Web.Adapters.Data
+{
 	public class CreatedBasket
 	{
 		private readonly int _basketId;
