@@ -3,11 +3,11 @@ using SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Http
 {
-	public class DeleteItemFromBasketHttpHandler : HttpHandlerWrapper
+	public class DeleteItemFromBasketHttpHandler
 	{
-		public DeleteItemFromBasketHttpHandler()
-			: base(new Handler(new ItemStore(), new RequestReader()))
+		public static HttpHandlerWrapper CreateHandler()
 		{
+			return new HttpHandlerWrapper(new Handler(new ItemStore(), new RequestReader()));
 		}
 	}
 }

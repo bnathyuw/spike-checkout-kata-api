@@ -12,4 +12,5 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Http
 
 		public bool IsReusable { get { return false; } }
 	}
+
 }

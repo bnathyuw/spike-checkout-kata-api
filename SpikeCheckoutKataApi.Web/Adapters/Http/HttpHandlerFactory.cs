@@ -8,13 +8,13 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Http
 		public IHttpHandler GetHandler(HttpContext context, string requestType, string url, string pathTranslated)
 		{
 			if (new Regex("^/baskets/(\\d+)/items/(\\d+)$").IsMatch(url) && requestType == "DELETE")
-				return new DeleteItemFromBasketHttpHandler();
+				return DeleteItemFromBasketHttpHandler.CreateHandler();
 			if(new Regex("^/baskets/(\\d+)/items$").IsMatch(url) && requestType == "POST")
-				return new AddItemToBasketHttpHandler();
+				return AddItemToBasketHttpHandler.CreateAddItemToBasketHttpHandler();
 			if (new Regex("^/baskets/(\\d+)$").IsMatch(url) && requestType == "GET")
-				return new RetrieveBasketHttpHandler();
+				return RetrieveBasketHttpHandler.CreateRetrieveBasketHttpHandler();
 			if (new Regex("^/baskets$").IsMatch(url) && requestType == "POST")
-				return new CreateBasketHttpHandler();
+				return CreateBasketHttpHandler.CreateCreateBasketHttpHandler();
 			return new NotFoundHttpHandler();
 		}
 

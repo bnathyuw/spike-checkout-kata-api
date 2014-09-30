@@ -3,11 +3,11 @@ using SpikeCheckoutKataApi.Web.Behaviour.CreateBasket;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Http
 {
-	public class CreateBasketHttpHandler : HttpHandlerWrapper
+	public class CreateBasketHttpHandler
 	{
-		public CreateBasketHttpHandler()
-			: base(new Handler(new BasketStore(), new RequestReader(), new BasketTemplate()))
+		public static HttpHandlerWrapper CreateCreateBasketHttpHandler()
 		{
+			return new HttpHandlerWrapper(new Handler(new BasketStore(), new RequestReader(), new BasketTemplate()));
 		}
 	}
 }

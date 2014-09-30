@@ -6,7 +6,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Http
 	{
 		private readonly IHandler _handler;
 
-		protected HttpHandlerWrapper(IHandler handler)
+		public HttpHandlerWrapper(IHandler handler)
 		{
 			_handler = handler;
 		}
