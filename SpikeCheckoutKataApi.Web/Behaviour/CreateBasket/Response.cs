@@ -9,12 +9,7 @@
 			_basketId = basketId;
 		}
 
-		public int BasketId
-		{
-			get { return _basketId; }
-		}
-
-		public string GetBasketLocation()
+		public string GetLocation()
 		{
 			return "/baskets/" + _basketId;
 		}

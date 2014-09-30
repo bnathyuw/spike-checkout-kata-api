@@ -18,12 +18,12 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			return Items.Where(i => i.Matches(request)).Select(i => i.ToItem());
 		}
 
-		public int StoreItem(AddItemToBasketRequest request)
+		public Response StoreItem(AddItemToBasketRequest request)
 		{
 			var id = GetNextId();
 			var itemInStore = request.ToItemInStoreWithId(id);
 			Items.Add(itemInStore);
-			return id;
+			return new Response(id, request.BasketId);
 		}
 
 		private int GetNextId()

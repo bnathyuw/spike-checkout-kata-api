@@ -16,9 +16,10 @@ namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 			var itemStore = new ItemStore();
 
 			var basket = basketStore.CreateBasket(new Web.Behaviour.CreateBasket.Request(null));
-			var itemId = itemStore.StoreItem(new Web.Behaviour.AddItemToBasket.Request('A', basket.BasketId));
-			itemStore.DeleteItem(new Web.Behaviour.DeleteItemFromBasket.Request(basket.BasketId, itemId));
-			_basketResponse = basketStore.GetBasket(new Request(basket.BasketId));
+			var basketId = basket.GetBasketId();
+			var item = itemStore.StoreItem(new Web.Behaviour.AddItemToBasket.Request('A', basketId));
+			itemStore.DeleteItem(new Web.Behaviour.DeleteItemFromBasket.Request(basketId, item.GetItemId()));
+			_basketResponse = basketStore.GetBasket(new Request(basketId));
 		}
 
 		[Test]

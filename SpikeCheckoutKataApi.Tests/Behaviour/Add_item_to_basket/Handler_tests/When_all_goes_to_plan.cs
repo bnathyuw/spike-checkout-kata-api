@@ -48,10 +48,10 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Add_item_to_basket.Handler_tests
 			return _itemFromRequest;
 		}
 
-		public int StoreItem(Request request)
+		public Response StoreItem(Request request)
 		{
 			_itemStored = request;
-			return ItemId;
+			return new Response(ItemId, BasketId);
 		}
 
 		public override int StatusCode

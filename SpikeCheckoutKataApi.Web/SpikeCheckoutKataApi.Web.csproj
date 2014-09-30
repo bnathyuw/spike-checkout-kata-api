@@ -54,6 +54,7 @@
     <Compile Include="Adapters\Http\HttpHandlerFactory.cs" />
     <Compile Include="Behaviour\AddItemToBasket\IReadRequests.cs" />
     <Compile Include="Behaviour\AddItemToBasket\IStoreItems.cs" />
+    <Compile Include="Behaviour\AddItemToBasket\Response.cs" />
     <Compile Include="Behaviour\CreateBasket\ICreateBaskets.cs" />
     <Compile Include="Behaviour\CreateBasket\IReadRequests.cs" />
     <Compile Include="Behaviour\CreateBasket\Request.cs" />
