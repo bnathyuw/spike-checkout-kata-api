@@ -58,6 +58,7 @@
     <Compile Include="Behaviour\CreateBasket\IReadRequests.cs" />
     <Compile Include="Behaviour\CreateBasket\Request.cs" />
     <Compile Include="Behaviour\CreateBasket\RequestReader.cs" />
+    <Compile Include="Behaviour\CreateBasket\Response.cs" />
     <Compile Include="Behaviour\DeleteItemFromBasket\Handler.cs" />
     <Compile Include="Behaviour\DeleteItemFromBasket\IDeleteItemsFromBaskets.cs" />
     <Compile Include="Behaviour\DeleteItemFromBasket\IReadRequests.cs" />

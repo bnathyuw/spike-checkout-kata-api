@@ -3,6 +3,7 @@ using System.Linq;
 using SpikeCheckoutKataApi.Web.Behaviour.CreateBasket;
 using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
 using CreateBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.CreateBasket.Request;
+using Handler = SpikeCheckoutKataApi.Web.Behaviour.CreateBasket.Handler;
 using RetrieveBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket.Request;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Data
@@ -20,12 +21,12 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			return basketInStore.ToResponseWithContents(basketContents);
 		}
 
-		public int CreateBasket(CreateBasketRequest request)
+		public Response CreateBasket(CreateBasketRequest request)
 		{
 			var id = GetNextId();
 			var basket = request.ToBasketInStoreWithId(id);
 			Baskets.Add(basket);
-			return id;
+			return new Response(id);
 		}
 
 		private static int GetNextId()

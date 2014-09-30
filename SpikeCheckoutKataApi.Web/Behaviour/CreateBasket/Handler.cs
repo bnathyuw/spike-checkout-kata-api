@@ -18,9 +18,9 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 		public void ProcessRequest(HttpRequestBase httpRequest, HttpResponseBase httpResponse)
 		{
 			var request = _readRequest.From(httpRequest);
-			var basketId = _basketStore.CreateBasket(request);
+			var createBasketResponse = _basketStore.CreateBasket(request);
 			httpResponse.StatusCode = (int)HttpStatusCode.Created;
-			httpResponse.RedirectLocation = "http://spike-checkout-kata-api.local/baskets/" + basketId;
+			httpResponse.RedirectLocation = "http://spike-checkout-kata-api.local" + createBasketResponse.GetBasketLocation();
 		}
 	}
 }

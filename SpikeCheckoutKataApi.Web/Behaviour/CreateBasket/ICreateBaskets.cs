@@ -2,6 +2,6 @@
 {
 	public interface ICreateBaskets
 	{
-		int CreateBasket(Request request);
+		Response CreateBasket(Request request);
 	}
 }

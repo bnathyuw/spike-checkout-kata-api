@@ -18,9 +18,9 @@ namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 			var basketStore = new BasketStore();
 			var itemStore = new ItemStore();
 
-			var basketId = basketStore.CreateBasket(new CreateBasketRequest(null));
-			itemStore.StoreItem(new AddItemToBasketRequest('A', basketId));
-			_basketResponse = basketStore.GetBasket(new RetrieveBasketRequest(basketId));
+			var createBasketResponse = basketStore.CreateBasket(new CreateBasketRequest(null));
+			itemStore.StoreItem(new AddItemToBasketRequest('A', createBasketResponse.BasketId));
+			_basketResponse = basketStore.GetBasket(new RetrieveBasketRequest(createBasketResponse.BasketId));
 		}
 
 		[Test]

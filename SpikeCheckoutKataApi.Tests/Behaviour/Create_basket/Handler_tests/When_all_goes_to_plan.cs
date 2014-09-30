@@ -50,10 +50,10 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Handler_tests
 			set { _redirectLocation = value; }
 		}
 
-		public int CreateBasket(Request request)
+		public Response CreateBasket(Request request)
 		{
 			_basketStored = request;
-			return BasketId;
+			return new Response(BasketId);
 		}
 
 		public Request From(HttpRequestBase httpRequest)
