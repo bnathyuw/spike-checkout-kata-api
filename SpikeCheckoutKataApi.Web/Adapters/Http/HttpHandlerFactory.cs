@@ -1,21 +1,39 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web;
+using AddItemToBasketHandlerFactory = SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket.HandlerFactory;
+using DeleteItemFromBasketHandlerFactory = SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket.HandlerFactory;
+using RetrieveBasketHandlerFactory = SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket.HandlerFactory;
+using CreateBasketHandlerFactory = SpikeCheckoutKataApi.Web.Behaviour.CreateBasket.HandlerFactory;
+using NotFoundHandlerFactory = SpikeCheckoutKataApi.Web.Behaviour.NotFound.HandlerFactory;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Http
 {
-	public class HttpHandlerFactory:IHttpHandlerFactory
+	public interface IHandlerFactory
 	{
+		IHandler CreateHandler();
+		bool Matches(string requestType, string url);
+	}
+	
+	public class HttpHandlerFactory : IHttpHandlerFactory
+	{
+		private readonly List<IHandlerFactory> _factories;
+
+		public HttpHandlerFactory()
+		{
+			_factories = new List<IHandlerFactory>
+				{
+					new DeleteItemFromBasketHandlerFactory(),
+					new AddItemToBasketHandlerFactory(),
+					new RetrieveBasketHandlerFactory(),
+					new CreateBasketHandlerFactory(),
+					new NotFoundHandlerFactory()
+				};
+		}
+
 		public IHttpHandler GetHandler(HttpContext context, string requestType, string url, string pathTranslated)
 		{
-			if (new Regex("^/baskets/(\\d+)/items/(\\d+)$").IsMatch(url) && requestType == "DELETE")
-				return DeleteItemFromBasketHttpHandler.CreateHandler();
-			if(new Regex("^/baskets/(\\d+)/items$").IsMatch(url) && requestType == "POST")
-				return AddItemToBasketHttpHandler.CreateAddItemToBasketHttpHandler();
-			if (new Regex("^/baskets/(\\d+)$").IsMatch(url) && requestType == "GET")
-				return RetrieveBasketHttpHandler.CreateRetrieveBasketHttpHandler();
-			if (new Regex("^/baskets$").IsMatch(url) && requestType == "POST")
-				return CreateBasketHttpHandler.CreateCreateBasketHttpHandler();
-			return new NotFoundHttpHandler();
+			return new HttpHandlerWrapper(_factories.First(f => f.Matches(requestType, url)).CreateHandler());
 		}
 
 		public void ReleaseHandler(IHttpHandler handler)
