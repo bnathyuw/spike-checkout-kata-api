@@ -2,6 +2,7 @@
 using System.Linq;
 using SpikeCheckoutKataApi.Web.Behaviour.CreateBasket;
 using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
+using RetrieveBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket.Request;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
@@ -11,7 +12,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 		private static readonly List<BasketInStore> Baskets = new List<BasketInStore>();
 		private readonly ItemStore _itemStore = new ItemStore();
 
-		public BasketResponse GetBasket(Request request)
+		public BasketResponse GetBasket(RetrieveBasketRequest request)
 		{
 			var basketInStore = Baskets.Single(b => b.Matching(request));
 			var basketContents = _itemStore.GetMatching(request);

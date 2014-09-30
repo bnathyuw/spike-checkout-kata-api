@@ -2,7 +2,9 @@
 using System.Linq;
 using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 using SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket;
-using Request = SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket.Request;
+using RetrieveBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket.Request;
+using AddItemToBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket.Request;
+using DeleteItemFromBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket.Request;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
@@ -11,12 +13,12 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 		private static readonly List<ItemInStore> Items = new List<ItemInStore>();
 		private int _currentId;
 
-		public IEnumerable<char> GetMatching(Request request)
+		public IEnumerable<char> GetMatching(RetrieveBasketRequest request)
 		{
 			return Items.Where(i => i.Matches(request)).Select(i => i.ToItem());
 		}
 
-		public int StoreItem(Behaviour.AddItemToBasket.Request request)
+		public int StoreItem(AddItemToBasketRequest request)
 		{
 			var id = GetNextId();
 			var itemInStore = request.ToItemInStoreWithId(id);
@@ -29,7 +31,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			return ++_currentId;
 		}
 
-		public void DeleteItem(Behaviour.DeleteItemFromBasket.Request request)
+		public void DeleteItem(DeleteItemFromBasketRequest request)
 		{
 			ItemInStore item = Items.Single(i => i.Matches(request));
 			Items.Remove(item);
