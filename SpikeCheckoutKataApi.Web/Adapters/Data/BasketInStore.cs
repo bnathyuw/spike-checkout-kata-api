@@ -7,7 +7,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 	public class BasketInStore
 	{
 		private readonly int _id;
-		private string _shopper;
+		private readonly string _shopper;
 
 		public BasketInStore(int id, string shopper)
 		{

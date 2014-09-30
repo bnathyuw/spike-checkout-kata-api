@@ -5,6 +5,16 @@ using SpikeCheckoutKataApi.Web.Adapters.Http;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 {
+	public interface ICreateBaskets
+	{
+		CreatedBasket CreateBasket(Request request);
+	}
+
+	public interface IReadRequests
+	{
+		Request From(HttpRequestBase httpRequest);
+	}
+
 	public class Handler : IHandler
 	{
 		private readonly ICreateBaskets _basketStore;

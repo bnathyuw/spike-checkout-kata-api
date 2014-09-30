@@ -3,7 +3,6 @@ using System.Linq;
 using SpikeCheckoutKataApi.Web.Behaviour.CreateBasket;
 using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
 using CreateBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.CreateBasket.Request;
-using Handler = SpikeCheckoutKataApi.Web.Behaviour.CreateBasket.Handler;
 using RetrieveBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket.Request;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Data

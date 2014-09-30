@@ -4,7 +4,17 @@ using SpikeCheckoutKataApi.Web.Adapters.Http;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket
 {
-	public class Handler:IHandler
+	public interface IDeleteItemsFromBaskets
+	{
+		void DeleteItem(Request request);
+	}
+
+	public interface IReadRequests
+	{
+		Request From(HttpRequestBase request);
+	}
+	
+	public class Handler : IHandler
 	{
 		private readonly IDeleteItemsFromBaskets _deleteItemsFromBaskets;
 		private readonly IReadRequests _readRequest;
