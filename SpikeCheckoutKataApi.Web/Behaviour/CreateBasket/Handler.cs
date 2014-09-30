@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Web;
+using SpikeCheckoutKataApi.Web.Adapters.Data;
 using SpikeCheckoutKataApi.Web.Adapters.Http;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
@@ -8,11 +9,13 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 	{
 		private readonly ICreateBaskets _basketStore;
 		private readonly IReadRequests _readRequest;
+		private readonly IBasketTemplate _basketTemplate;
 
-		public Handler(ICreateBaskets basketStore, IReadRequests readRequest)
+		public Handler(ICreateBaskets basketStore, IReadRequests readRequest, IBasketTemplate basketTemplate)
 		{
 			_basketStore = basketStore;
 			_readRequest = readRequest;
+			_basketTemplate = basketTemplate;
 		}
 
 		public void ProcessRequest(HttpRequestBase httpRequest, HttpResponseBase httpResponse)
@@ -20,7 +23,7 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 			var request = _readRequest.From(httpRequest);
 			var createBasketResponse = _basketStore.CreateBasket(request);
 			httpResponse.StatusCode = (int)HttpStatusCode.Created;
-			httpResponse.RedirectLocation = "http://spike-checkout-kata-api.local" + createBasketResponse.GetLocation();
+			httpResponse.RedirectLocation = createBasketResponse.CompleteTemplate(_basketTemplate);
 		}
 	}
 }

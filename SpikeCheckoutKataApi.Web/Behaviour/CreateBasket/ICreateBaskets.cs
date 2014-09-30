@@ -1,7 +1,9 @@
-﻿namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
+﻿using SpikeCheckoutKataApi.Web.Adapters.Data;
+
+namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 {
 	public interface ICreateBaskets
 	{
-		Response CreateBasket(Request request);
+		CreatedBasket CreateBasket(Request request);
 	}
 }

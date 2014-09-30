@@ -1,14 +1,16 @@
 ﻿using System.Net;
 using System.Web;
 using NUnit.Framework;
+using SpikeCheckoutKataApi.Web.Adapters.Data;
 using SpikeCheckoutKataApi.Web.Behaviour.CreateBasket;
 
 namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Handler_tests
 {
 	[TestFixture]
-	public class When_all_goes_to_plan : HttpResponseBase, ICreateBaskets, IReadRequests
+	public class When_all_goes_to_plan : HttpResponseBase, ICreateBaskets, IReadRequests, IBasketTemplate
 	{
 		private const int BasketId = 666;
+		private const string ExpectedLocation = "expected location";
 		private int _statusCode;
 		private string _redirectLocation;
 		private readonly Request _basketFromRequest = new Request(null);
@@ -17,7 +19,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Handler_tests
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			var handler = new Handler(this, this);
+			var handler = new Handler(this, this, this);
 
 			handler.ProcessRequest(null, this);
 		}
@@ -35,9 +37,9 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Handler_tests
 		}
 
 		[Test]
-		public void Then_the_response_has_the_correct_redirect_location()
+		public void Then_the_response_has_the_redirect_location_from_the_template()
 		{
-			Assert.That(_redirectLocation, Is.StringContaining("/baskets/" + BasketId));
+			Assert.That(_redirectLocation, Is.EqualTo(ExpectedLocation));
 		}
 
 		public override int StatusCode
@@ -50,15 +52,21 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Handler_tests
 			set { _redirectLocation = value; }
 		}
 
-		public Response CreateBasket(Request request)
+		public CreatedBasket CreateBasket(Request request)
 		{
 			_basketStored = request;
-			return new Response(BasketId);
+			return new CreatedBasket(BasketId);
 		}
 
 		public Request From(HttpRequestBase httpRequest)
 		{
 			return _basketFromRequest;
+		}
+
+		public string CompleteWith(int basketId)
+		{
+			Assert.That(basketId, Is.EqualTo(BasketId));
+			return ExpectedLocation;
 		}
 	}
 }

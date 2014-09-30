@@ -1,7 +1,9 @@
-﻿namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
+﻿using SpikeCheckoutKataApi.Web.Adapters.Data;
+
+namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
 {
 	public interface IStoreItems
 	{
-		Response StoreItem(Request request);
+		CreatedItem StoreItem(Request request);
 	}
 }

@@ -16,7 +16,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Add_item_to_basket.Handler_tests
 		[SetUp]
 		public void SetUp()
 		{
-			var handler = new Handler(null, this);
+			var handler = new Handler(null, this, null);
 			handler.ProcessRequest(null, this);
 		}
 
