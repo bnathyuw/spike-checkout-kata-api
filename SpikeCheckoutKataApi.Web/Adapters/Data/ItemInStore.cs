@@ -29,5 +29,10 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 		{
 			return request.Matches(_basketId, _id);
 		}
+
+		public CreatedItem ToCreatedItem()
+		{
+			return new CreatedItem(_id, _basketId);
+		}
 	}
 }

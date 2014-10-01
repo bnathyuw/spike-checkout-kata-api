@@ -23,7 +23,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			var id = GetNextId();
 			var itemInStore = request.ToItemInStoreWithId(id);
 			Items.Add(itemInStore);
-			return request.ToCreatedItemWithId(id);
+			return itemInStore.ToCreatedItem();
 		}
 
 		private int GetNextId()
@@ -33,7 +33,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 
 		public void DeleteItem(DeleteItemFromBasketRequest request)
 		{
-			ItemInStore item = Items.Single(i => i.Matches(request));
+			var item = Items.Single(i => i.Matches(request));
 			Items.Remove(item);
 		}
 	}
