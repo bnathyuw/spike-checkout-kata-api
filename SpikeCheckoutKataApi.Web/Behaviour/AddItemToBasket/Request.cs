@@ -1,4 +1,4 @@
-﻿using SpikeCheckoutKataApi.Web.Adapters.Data;
+﻿using System;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
 {
@@ -13,9 +13,9 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
 			_basketId = basketId;
 		}
 
-		public ItemInStore ToItemInStoreWithId(int id)
+		public T Create<T>(Func<char, int, T> create)
 		{
-			return new ItemInStore(_code, _basketId, id);
+			return create(_code, _basketId);
 		}
 	}
 }
