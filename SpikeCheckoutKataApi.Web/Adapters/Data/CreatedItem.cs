@@ -2,7 +2,7 @@
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
-	public class CreatedItem
+	public class CreatedItem : ICompleteItemTemplates
 	{
 		private readonly int _itemId;
 		private readonly int _basketId;

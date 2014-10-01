@@ -1,13 +1,17 @@
 ﻿using System.Net;
 using System.Web;
-using SpikeCheckoutKataApi.Web.Adapters.Data;
 using SpikeCheckoutKataApi.Web.Adapters.Http;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
 {
+	public interface ICompleteItemTemplates
+	{
+		string CompleteTemplate(IItemTemplate itemTemplate);
+	}
+
 	public interface IStoreItems
 	{
-		CreatedItem StoreItem(Request request);
+		ICompleteItemTemplates StoreItem(Request request);
 	}
 
 	public interface IReadRequests

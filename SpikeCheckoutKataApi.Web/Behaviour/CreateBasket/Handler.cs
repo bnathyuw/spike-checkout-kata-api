@@ -1,13 +1,17 @@
 ﻿using System.Net;
 using System.Web;
-using SpikeCheckoutKataApi.Web.Adapters.Data;
 using SpikeCheckoutKataApi.Web.Adapters.Http;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 {
+	public interface ICompleteBasketTemplates
+	{
+		string CompleteTemplate(IBasketTemplate basketTemplate);
+	}
+
 	public interface ICreateBaskets
 	{
-		CreatedBasket CreateBasket(Request request);
+		ICompleteBasketTemplates CreateBasket(Request request);
 	}
 
 	public interface IReadRequests
@@ -36,9 +40,9 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 		public void ProcessRequest(HttpRequestBase httpRequest, HttpResponseBase httpResponse)
 		{
 			var request = _readRequest.From(httpRequest);
-			var createBasketResponse = _basketStore.CreateBasket(request);
+			var basket = _basketStore.CreateBasket(request);
 			httpResponse.StatusCode = (int)HttpStatusCode.Created;
-			httpResponse.RedirectLocation = createBasketResponse.CompleteTemplate(_basketTemplate);
+			httpResponse.RedirectLocation = basket.CompleteTemplate(_basketTemplate);
 		}
 	}
 }
