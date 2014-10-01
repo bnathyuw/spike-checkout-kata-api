@@ -25,7 +25,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			var id = GetNextId();
 			var basket = request.ToBasketInStoreWithId(id);
 			Baskets.Add(basket);
-			return new CreatedBasket(id);
+			return basket.ToCreatedBasket();
 		}
 
 		private static int GetNextId()
