@@ -18,7 +18,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			return Items.Where(i => i.Matches(request)).Select(i => i.ToItem());
 		}
 
-		public CreatedItem StoreItem(AddItemToBasketRequest request)
+		public ICompleteItemTemplates StoreItem(AddItemToBasketRequest request)
 		{
 			var itemId = GetNextId();
 			var itemInStore = request.Create((code, basketId) => new ItemInStore(code, basketId, itemId));

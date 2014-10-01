@@ -52,7 +52,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Handler_tests
 			set { _redirectLocation = value; }
 		}
 
-		public CreatedBasket CreateBasket(Request request)
+		public ICompleteBasketTemplates CreateBasket(Request request)
 		{
 			_basketStored = request;
 			return new CreatedBasket(BasketId);

@@ -20,7 +20,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			return basketInStore.ToResponseWithContents(basketContents);
 		}
 
-		public CreatedBasket CreateBasket(CreateBasketRequest request)
+		public ICompleteBasketTemplates CreateBasket(CreateBasketRequest request)
 		{
 			var basketId = GetNextId();
 			var basket = request.Create(shopper => new BasketInStore(basketId, shopper));

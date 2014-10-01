@@ -50,7 +50,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Add_item_to_basket.Handler_tests
 			return _itemFromRequest;
 		}
 
-		public CreatedItem StoreItem(Request request)
+		public ICompleteItemTemplates StoreItem(Request request)
 		{
 			_itemStored = request;
 			return new CreatedItem(ItemId, BasketId);
