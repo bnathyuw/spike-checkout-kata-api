@@ -11,7 +11,7 @@ namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 	[TestFixture]
 	public class Given_an_item_has_been_added_to_a_new_basket_and_then_delete_when_that_basket_is_retrieved : IBasketTemplate
 	{
-		private BasketResponse _basketResponse;
+		private IBasketResponse _basketResponse;
 		private int _basketId;
 
 		[TestFixtureSetUp]

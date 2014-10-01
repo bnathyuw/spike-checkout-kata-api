@@ -15,9 +15,9 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			_shopper = shopper;
 		}
 
-		public BasketResponse ToResponseWithContents(IEnumerable<char> contents)
+		public Basket ToResponseWithContents(IEnumerable<char> contents)
 		{
-			return new BasketResponse(contents.ToArray(), _shopper);
+			return new Basket(contents.ToArray(), _shopper);
 		}
 
 		public bool Matching(Request request)

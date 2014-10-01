@@ -13,7 +13,7 @@ namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 	[TestFixture]
 	public class Given_an_item_has_been_added_to_a_new_basket_when_that_basket_is_retrieved : IItemTemplate, IBasketTemplate
 	{
-		private BasketResponse _basketResponse;
+		private IBasketResponse _basketResponse;
 		private int _itemId;
 		private int _basketId;
 

@@ -50,6 +50,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\Data\Basket.cs" />
     <Compile Include="Behaviour\DeleteItemFromBasket\HandlerFactory.cs" />
     <Compile Include="Adapters\Http\HttpHandlerFactory.cs" />
     <Compile Include="Adapters\Data\CreatedItem.cs" />
@@ -74,7 +75,6 @@
     <Compile Include="Behaviour\ValidationException.cs" />
     <Compile Include="Behaviour\Error.cs" />
     <Compile Include="Behaviour\AddItemToBasket\RequestReader.cs" />
-    <Compile Include="Behaviour\RetrieveBasket\BasketResponse.cs" />
     <Compile Include="Adapters\Data\BasketStore.cs" />
     <Compile Include="Behaviour\ModifyResponseTo.cs" />
     <Compile Include="Behaviour\InspectRequestTo.cs" />

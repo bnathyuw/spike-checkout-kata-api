@@ -4,9 +4,15 @@ using SpikeCheckoutKataApi.Web.Adapters.Http;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket
 {
+	public interface IBasketResponse
+	{
+		char[] Contents { get; }
+		string Shopper { get; }
+	}
+
 	public interface IGetBaskets
 	{
-		BasketResponse GetBasket(Request request);
+		IBasketResponse GetBasket(Request request);
 	}
 
 	public interface IReadRequests

@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Web;
 using NUnit.Framework;
+using SpikeCheckoutKataApi.Web.Adapters.Data;
 using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Tests.Behaviour.Retrieve_basket.Handler_tests
@@ -41,9 +42,9 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Retrieve_basket.Handler_tests
 			return new Request(BasketId);
 		}
 
-		public BasketResponse GetBasket(Request request)
+		public IBasketResponse GetBasket(Request request)
 		{
-			return new BasketResponse("ABCDE".ToCharArray(), null);
+			return new Basket("ABCDE".ToCharArray(), null);
 		}
 
 		public override void Write(string body)

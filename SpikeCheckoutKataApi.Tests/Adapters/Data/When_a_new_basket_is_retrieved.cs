@@ -10,7 +10,7 @@ namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 	[TestFixture]
 	public class When_a_new_basket_is_retrieved : IBasketTemplate
 	{
-		private BasketResponse _basketResponse;
+		private IBasketResponse _basketResponse;
 		private int _basketId;
 		private const string Shopper = "Jones";
 

@@ -13,7 +13,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 		private static readonly List<BasketInStore> Baskets = new List<BasketInStore>();
 		private readonly ItemStore _itemStore = new ItemStore();
 
-		public BasketResponse GetBasket(RetrieveBasketRequest request)
+		public IBasketResponse GetBasket(RetrieveBasketRequest request)
 		{
 			var basketInStore = Baskets.Single(b => b.Matching(request));
 			var basketContents = _itemStore.GetMatching(request);
