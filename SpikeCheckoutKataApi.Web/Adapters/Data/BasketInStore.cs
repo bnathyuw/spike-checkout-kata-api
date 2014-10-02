@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
+﻿using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
+	public delegate T CreateFromBasketInStore<out T>(int basketId, string shopper);
+
 	public class BasketInStore
 	{
 		private readonly int _id;
@@ -15,19 +15,19 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			_shopper = shopper;
 		}
 
-		public Basket ToResponseWithContents(IEnumerable<char> contents)
-		{
-			return new Basket(contents.ToArray(), _shopper);
-		}
-
 		public bool Matching(Request request)
 		{
 			return request.Matches(_id);
 		}
 
-		public CreatedBasket ToCreatedBasket()
+		public T Create<T>(CreateFromBasketInStore<T> create)
 		{
-			return new CreatedBasket(_id);
+			return create(_id, _shopper);
+		}
+
+		public bool Matching(int basketId)
+		{
+			return _id == basketId;
 		}
 	}
 }

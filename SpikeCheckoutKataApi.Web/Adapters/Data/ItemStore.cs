@@ -13,22 +13,37 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 		private static readonly List<ItemInStore> Items = new List<ItemInStore>();
 		private int _currentId;
 
-		public IEnumerable<char> GetMatching(RetrieveBasketRequest request)
+		public IEnumerable<char> GetMatching(BasketInStore basket)
 		{
-			return Items.Where(i => i.Matches(request)).Select(i => i.ToItem());
+			return Items.Where(i => i.Matches(basket)).Select(i => i.Create(CreateItemInBasket));
+		}
+
+		private static char CreateItemInBasket(int id, int basketId, char code)
+		{
+			return code;
 		}
 
 		public ICompleteItemTemplates StoreItem(AddItemToBasketRequest request)
 		{
-			var itemId = GetNextId();
-			var itemInStore = request.Create((code, basketId) => new ItemInStore(code, basketId, itemId));
+			var itemInStore = request.Create(CreateItemInStore);
 			Items.Add(itemInStore);
-			return itemInStore.ToCreatedItem();
+			return itemInStore.Create(CreateStoredItem);
 		}
 
 		private int GetNextId()
 		{
 			return ++_currentId;
+		}
+
+		private ItemInStore CreateItemInStore(char code, int basketId)
+		{
+			var itemId = GetNextId();
+			return new ItemInStore(code, basketId, itemId);
+		}
+
+		private static CreatedItem CreateStoredItem(int id, int basket, char code)
+		{
+			return new CreatedItem(id, basket);
 		}
 
 		public void DeleteItem(DeleteItemFromBasketRequest request)

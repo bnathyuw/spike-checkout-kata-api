@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Web;
 using SpikeCheckoutKataApi.Web.Adapters.Http;
 
@@ -6,7 +7,7 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket
 {
 	public interface IBasketResponse
 	{
-		char[] Contents { get; }
+		IEnumerable<char> Contents { get; }
 		string Shopper { get; }
 	}
 

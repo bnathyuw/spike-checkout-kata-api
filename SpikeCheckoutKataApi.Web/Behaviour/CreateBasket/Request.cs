@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
+﻿namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 {
+	public delegate T CreateFromRequest<out T>(string shopper);
+	
 	public class Request
 	{
 		private readonly string _shopper;
@@ -11,7 +11,7 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 			_shopper = shopper;
 		}
 
-		public T Create<T>(Func<string, T> create)
+		public T Create<T>(CreateFromRequest<T> create)
 		{
 			return create(_shopper);
 		}
