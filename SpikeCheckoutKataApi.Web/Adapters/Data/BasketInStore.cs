@@ -1,33 +1,33 @@
-﻿using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
-
-namespace SpikeCheckoutKataApi.Web.Adapters.Data
+﻿namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
 	public delegate T CreateFromBasketInStore<out T>(int basketId, string shopper);
 
+	public delegate bool MatchesBasketInStore(int id);
+
 	public class BasketInStore
 	{
-		private readonly int _id;
+		private readonly int _basketId;
 		private readonly string _shopper;
 
-		public BasketInStore(int id, string shopper)
+		public BasketInStore(int basketId, string shopper)
 		{
-			_id = id;
+			_basketId = basketId;
 			_shopper = shopper;
 		}
 
-		public bool Matching(Request request)
+		public bool Matches(MatchesBasketInStore matches)
 		{
-			return request.Matches(_id);
+			return matches(_basketId);
 		}
 
 		public T Create<T>(CreateFromBasketInStore<T> create)
 		{
-			return create(_id, _shopper);
+			return create(_basketId, _shopper);
 		}
 
-		public bool Matching(int basketId)
+		public bool Matches(int basketId)
 		{
-			return _id == basketId;
+			return _basketId == basketId;
 		}
 	}
 }

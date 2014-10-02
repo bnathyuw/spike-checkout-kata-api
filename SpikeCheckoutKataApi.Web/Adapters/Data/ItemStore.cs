@@ -2,7 +2,6 @@
 using System.Linq;
 using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 using SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket;
-using RetrieveBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket.Request;
 using AddItemToBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket.Request;
 using DeleteItemFromBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket.Request;
 
@@ -15,7 +14,8 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 
 		public IEnumerable<char> GetMatching(BasketInStore basket)
 		{
-			return Items.Where(i => i.Matches(basket)).Select(i => i.Create(CreateItemInBasket));
+			return Items.Where(i => i.Matches((itemId, basketId) => basket.Matches(basketId)))
+			            .Select(i => i.Create(CreateItemInBasket));
 		}
 
 		private static char CreateItemInBasket(int id, int basketId, char code)
@@ -48,7 +48,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 
 		public void DeleteItem(DeleteItemFromBasketRequest request)
 		{
-			var item = Items.Single(i => i.Matches(request));
+			var item = Items.Single(i => i.Matches((itemId, basketId) => request.Matches(basketId, itemId)));
 			Items.Remove(item);
 		}
 	}

@@ -15,7 +15,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 
 		public IBasketResponse GetBasket(RetrieveBasketRequest request)
 		{
-			var basketInStore = Baskets.Single(b => b.Matching(request));
+			var basketInStore = Baskets.Single(b => b.Matches(request.Matches));
 			var basketContents = _itemStore.GetMatching(basketInStore);
 			return basketInStore.Create((id, shopper) => new Basket(basketContents, shopper));
 		}

@@ -1,34 +1,30 @@
 ﻿namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
-	public delegate T CreateFromItemInStore<out T>(int id, int basketId, char code);
+	public delegate T CreateFromItemInStore<out T>(int itemId, int basketId, char code);
+
+	public delegate bool MatchesItemInStore(int itemId, int basketId);
 
 	public class ItemInStore
 	{
 		private readonly char _code;
 		private readonly int _basketId;
-		private readonly int _id;
+		private readonly int _itemId;
 
-		public ItemInStore(char code, int basketId, int id)
+		public ItemInStore(char code, int basketId, int itemId)
 		{
 			_code = code;
 			_basketId = basketId;
-			_id = id;
+			_itemId = itemId;
 		}
 
-		public bool Matches(Behaviour.DeleteItemFromBasket.Request request)
+		public bool Matches(MatchesItemInStore matches)
 		{
-			return request.Matches(_basketId, _id);
+			return matches(_itemId, _basketId);
 		}
 
 		public T Create<T>(CreateFromItemInStore<T> create)
 		{
-			return create(_id, _basketId, _code);
-		}
-
-
-		public bool Matches(BasketInStore basketInStore)
-		{
-			return basketInStore.Matching(_basketId);
+			return create(_itemId, _basketId, _code);
 		}
 	}
 }
