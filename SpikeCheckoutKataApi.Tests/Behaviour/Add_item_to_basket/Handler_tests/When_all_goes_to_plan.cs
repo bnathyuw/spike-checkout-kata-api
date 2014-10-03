@@ -12,7 +12,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Add_item_to_basket.Handler_tests
 		private const int BasketId = 999;
 		private const int ItemId = 555;
 		private const string ExpectedLocation = "expected location";
-		private Request _itemStored;
+		private ISpecifyItemToStore _itemStored;
 		private readonly Request _itemFromRequest = new Request('Z', BasketId);
 		private int _statusCode;
 		private string _redirectLocation;
@@ -50,7 +50,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Add_item_to_basket.Handler_tests
 			return _itemFromRequest;
 		}
 
-		public ICompleteItemTemplates StoreItem(Request request)
+		public ICompleteItemTemplates StoreItem(ISpecifyItemToStore request)
 		{
 			_itemStored = request;
 			return new CreatedItem(ItemId, BasketId);

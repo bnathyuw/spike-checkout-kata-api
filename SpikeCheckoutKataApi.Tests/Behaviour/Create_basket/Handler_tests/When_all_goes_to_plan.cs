@@ -14,7 +14,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Handler_tests
 		private int _statusCode;
 		private string _redirectLocation;
 		private readonly Request _basketFromRequest = new Request(null);
-		private Request _basketStored;
+		private ISpecifyBasketToStore _basketStored;
 
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
@@ -52,7 +52,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Handler_tests
 			set { _redirectLocation = value; }
 		}
 
-		public ICompleteBasketTemplates CreateBasket(Request request)
+		public ICompleteBasketTemplates CreateBasket(ISpecifyBasketToStore request)
 		{
 			_basketStored = request;
 			return new CreatedBasket(BasketId);

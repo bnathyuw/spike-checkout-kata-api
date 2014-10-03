@@ -9,7 +9,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Delete_item_from_basket.Handler_t
 	public class When_all_goes_to_plan : HttpResponseBase, IDeleteItemsFromBaskets, IReadRequests
 	{
 		private int _statusCode;
-		private Request _itemDeleted;
+		private ISpecifyItemToDelete _itemDeleted;
 		private Request _request;
 
 		[TestFixtureSetUp]
@@ -37,7 +37,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Delete_item_from_basket.Handler_t
 			set { _statusCode = value; }
 		}
 
-		public void DeleteItem(Request request)
+		public void DeleteItem(ISpecifyItemToDelete request)
 		{
 			_itemDeleted = request;
 		}

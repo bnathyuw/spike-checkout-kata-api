@@ -4,9 +4,14 @@ using SpikeCheckoutKataApi.Web.Adapters.Http;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket
 {
+	public interface ISpecifyItemToDelete
+	{
+		bool Matches(int itemId, int basketId);
+	}
+
 	public interface IDeleteItemsFromBaskets
 	{
-		void DeleteItem(Request request);
+		void DeleteItem(ISpecifyItemToDelete request);
 	}
 
 	public interface IReadRequests

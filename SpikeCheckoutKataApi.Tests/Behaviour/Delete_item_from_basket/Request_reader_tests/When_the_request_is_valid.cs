@@ -16,7 +16,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Delete_item_from_basket.Request_r
 			var requestReader = new RequestReader();
 			var request = requestReader.From(this);
 
-			Assert.That(request.Matches(BasketId, ItemId), Is.True);
+			Assert.That(request.Matches(ItemId, BasketId), Is.True);
 		}
 
 		public override string Path

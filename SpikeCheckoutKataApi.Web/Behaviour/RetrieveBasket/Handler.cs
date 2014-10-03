@@ -11,9 +11,14 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket
 		string Shopper { get; }
 	}
 
+	public interface ISpecifyBasketToRetrieve
+	{
+		bool Matches(int basketId);
+	}
+
 	public interface IGetBaskets
 	{
-		IBasketResponse GetBasket(Request request);
+		IBasketResponse GetBasket(ISpecifyBasketToRetrieve request);
 	}
 
 	public interface IReadRequests

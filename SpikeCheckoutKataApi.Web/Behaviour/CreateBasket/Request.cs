@@ -1,8 +1,8 @@
 ﻿namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 {
 	public delegate T CreateFromRequest<out T>(string shopper);
-	
-	public class Request
+
+	public class Request : ISpecifyBasketToStore
 	{
 		private readonly string _shopper;
 

@@ -1,7 +1,6 @@
 ﻿namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
 	public delegate T CreateFromItemInStore<out T>(int itemId, int basketId, char code);
-
 	public delegate bool MatchesItemInStore(int itemId, int basketId);
 
 	public class ItemInStore
@@ -17,14 +16,14 @@
 			_itemId = itemId;
 		}
 
-		public bool Matches(MatchesItemInStore matches)
-		{
-			return matches(_itemId, _basketId);
-		}
-
 		public T Create<T>(CreateFromItemInStore<T> create)
 		{
 			return create(_itemId, _basketId, _code);
+		}
+
+		public bool Matches(MatchesItemInStore matches)
+		{
+			return matches(_itemId, _basketId);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket
 {
-	public class Request
+	public class Request : ISpecifyBasketToRetrieve
 	{
 		private readonly int _basketId;
 

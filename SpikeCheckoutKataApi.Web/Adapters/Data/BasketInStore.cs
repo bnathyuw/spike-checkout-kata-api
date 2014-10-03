@@ -1,10 +1,9 @@
 ﻿namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
 	public delegate T CreateFromBasketInStore<out T>(int basketId, string shopper);
-
 	public delegate bool MatchesBasketInStore(int id);
 
-	public class BasketInStore
+	public class BasketInStore : ICheckBasketMatches
 	{
 		private readonly int _basketId;
 		private readonly string _shopper;

@@ -2,28 +2,21 @@
 using System.Linq;
 using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 using SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket;
-using AddItemToBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket.Request;
-using DeleteItemFromBasketRequest = SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket.Request;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
-	public class ItemStore : IStoreItems, IDeleteItemsFromBaskets
+	public class ItemStore : IStoreItems, IDeleteItemsFromBaskets, IFindItemsByBasket
 	{
 		private static readonly List<ItemInStore> Items = new List<ItemInStore>();
 		private int _currentId;
 
-		public IEnumerable<char> GetMatching(BasketInStore basket)
+		public IEnumerable<char> GetMatching(ICheckBasketMatches basket)
 		{
-			return Items.Where(i => i.Matches((itemId, basketId) => basket.Matches(basketId)))
-			            .Select(i => i.Create(CreateItemInBasket));
+			return Items.Where(item => item.Matches((itemId, basketId) => basket.Matches(basketId)))
+			            .Select(CreateItemInBasket);
 		}
 
-		private static char CreateItemInBasket(int id, int basketId, char code)
-		{
-			return code;
-		}
-
-		public ICompleteItemTemplates StoreItem(AddItemToBasketRequest request)
+		public ICompleteItemTemplates StoreItem(ISpecifyItemToStore request)
 		{
 			var itemInStore = request.Create(CreateItemInStore);
 			Items.Add(itemInStore);
@@ -35,10 +28,14 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			return ++_currentId;
 		}
 
+		private static char CreateItemInBasket(ItemInStore item)
+		{
+			return item.Create((id, basketId, code) => code);
+		}
+
 		private ItemInStore CreateItemInStore(char code, int basketId)
 		{
-			var itemId = GetNextId();
-			return new ItemInStore(code, basketId, itemId);
+			return new ItemInStore(code, basketId, GetNextId());
 		}
 
 		private static CreatedItem CreateStoredItem(int id, int basket, char code)
@@ -46,9 +43,9 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			return new CreatedItem(id, basket);
 		}
 
-		public void DeleteItem(DeleteItemFromBasketRequest request)
+		public void DeleteItem(ISpecifyItemToDelete request)
 		{
-			var item = Items.Single(i => i.Matches((itemId, basketId) => request.Matches(basketId, itemId)));
+			var item = Items.Single(i => i.Matches(request.Matches));
 			Items.Remove(item);
 		}
 	}

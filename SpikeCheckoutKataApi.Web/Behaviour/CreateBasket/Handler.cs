@@ -4,24 +4,29 @@ using SpikeCheckoutKataApi.Web.Adapters.Http;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.CreateBasket
 {
+	public interface IBasketTemplate
+	{
+		string CompleteWith(int basketId);
+	}
+
 	public interface ICompleteBasketTemplates
 	{
 		string CompleteTemplate(IBasketTemplate basketTemplate);
 	}
 
+	public interface ISpecifyBasketToStore
+	{
+		T Create<T>(CreateFromRequest<T> create);
+	}
+
 	public interface ICreateBaskets
 	{
-		ICompleteBasketTemplates CreateBasket(Request request);
+		ICompleteBasketTemplates CreateBasket(ISpecifyBasketToStore request);
 	}
 
 	public interface IReadRequests
 	{
 		Request From(HttpRequestBase httpRequest);
-	}
-
-	public interface IBasketTemplate
-	{
-		string CompleteWith(int basketId);
 	}
 
 	public class Handler : IHandler

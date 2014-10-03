@@ -2,7 +2,7 @@
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket
 {
-	public class Request
+	public class Request : ISpecifyItemToStore
 	{
 		private readonly char _code;
 		private readonly int _basketId;

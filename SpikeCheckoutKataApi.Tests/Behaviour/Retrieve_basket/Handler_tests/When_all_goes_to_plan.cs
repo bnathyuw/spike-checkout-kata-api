@@ -42,7 +42,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Retrieve_basket.Handler_tests
 			return new Request(BasketId);
 		}
 
-		public IBasketResponse GetBasket(Request request)
+		public IBasketResponse GetBasket(ISpecifyBasketToRetrieve request)
 		{
 			return new Basket("ABCDE".ToCharArray(), null);
 		}

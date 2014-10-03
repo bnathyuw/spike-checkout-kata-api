@@ -12,7 +12,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Create_basket.Request_reader_test
 		private MemoryStream _stream;
 		private StreamWriter _writer;
 		private RequestReader _requestReader;
-		private Request _request;
+		private ISpecifyBasketToStore _request;
 		private const string Shopper = "Smith";
 
 		[SetUp]

@@ -1,6 +1,6 @@
 ﻿namespace SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket
 {
-	public class Request
+	public class Request : ISpecifyItemToDelete
 	{
 		private readonly int _basketId;
 		private readonly int _itemId;
@@ -11,7 +11,7 @@
 			_itemId = itemId;
 		}
 
-		public bool Matches(int basketId, int itemId)
+		public bool Matches(int itemId, int basketId)
 		{
 			return _itemId == itemId && _basketId == basketId;
 		}
