@@ -8,10 +8,20 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 		private readonly string _shopper;
 		private readonly IEnumerable<char> _contents;
 
+		public Basket(string shopper)
+		{
+			_shopper = shopper;
+		}
+
 		public Basket(IEnumerable<char> contents, string shopper)
 		{
 			_shopper = shopper;
 			_contents = contents;
+		}
+
+		public Basket WithContents(IEnumerable<char> contents)
+		{
+			return new Basket(contents, _shopper);
 		}
 
 		public IEnumerable<char> Contents

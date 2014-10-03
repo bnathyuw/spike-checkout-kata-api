@@ -5,27 +5,20 @@ using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
-	public interface ICheckBasketMatches
-	{
-		bool Matches(int basketId);
-	}
-
 	public interface IFindItemsByBasket
 	{
-		IEnumerable<char> GetMatching(ICheckBasketMatches basket);
+		IEnumerable<char> GetMatching(ISpecifyBasketToRetrieve basket);
 	}
 	
 	public class BasketStore : IGetBaskets, ICreateBaskets
 	{
 		private static int _currentId;
 		private static readonly List<BasketInStore> Baskets = new List<BasketInStore>();
-		private readonly IFindItemsByBasket _itemStore = new ItemStore();
 
 		public IBasketResponse GetBasket(ISpecifyBasketToRetrieve request)
 		{
 			var basketInStore = Baskets.Single(b => b.Matches(request.Matches));
-			var basketContents = _itemStore.GetMatching(basketInStore);
-			return basketInStore.Create((id, shopper) => new Basket(basketContents, shopper));
+			return basketInStore.Create((id, shopper) => new Basket(shopper));
 		}
 
 		public ICompleteBasketTemplates CreateBasket(ISpecifyBasketToStore request)

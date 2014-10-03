@@ -8,7 +8,7 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket
 	{
 		public IHandler CreateHandler()
 		{
-			return new Handler(new BasketStore(), new RequestReader());
+			return new Handler(new BasketStore(), new RequestReader(), (IFindItemsByBasket) new ItemStore());
 		}
 
 		public bool Matches(string requestType, string url)

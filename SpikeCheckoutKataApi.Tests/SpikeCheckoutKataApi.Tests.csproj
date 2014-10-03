@@ -44,8 +44,8 @@
     <Compile Include="Behaviour\Add_item_to_basket\Handler_tests\When_the_request_is_invalid.cs" />
     <Compile Include="Behaviour\Add_item_to_basket\Handler_tests\When_all_goes_to_plan.cs" />
     <Compile Include="Behaviour\Create_basket\Handler_tests\When_all_goes_to_plan.cs" />
-    <Compile Include="Adapters\Data\Given_an_item_has_been_added_to_a_new_basket_and_then_delete_when_that_basket_is_retrieved.cs" />
-    <Compile Include="Adapters\Data\Given_an_item_has_been_added_to_a_new_basket_when_that_basket_is_retrieved.cs" />
+    <Compile Include="Adapters\Data\Given_an_item_has_been_stored_and_then_deleted_when_that_baskets_items_are_retrieved.cs" />
+    <Compile Include="Adapters\Data\Given_an_item_has_been_stored_when_the_baskets_items_are_retrieved.cs" />
     <Compile Include="Adapters\Data\When_a_basket_is_created.cs" />
     <Compile Include="Adapters\Data\When_a_new_basket_is_retrieved.cs" />
     <Compile Include="Behaviour\Add_item_to_basket\Request_reader_tests\When_the_request_is_invalid.cs" />

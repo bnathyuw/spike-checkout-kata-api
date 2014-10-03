@@ -21,13 +21,8 @@ namespace SpikeCheckoutKataApi.Tests.Adapters.Data
 
 			var basket = basketStore.CreateBasket(new CreateBasketRequest(Shopper));
 			basket.CompleteTemplate(this);
-			_basketResponse = basketStore.GetBasket(new RetrieveBasketRequest(_basketId));
-		}
 
-		[Test]
-		public void Then_it_contains_nothing()
-		{
-			Assert.That(_basketResponse.Contents, Is.Empty);
+			_basketResponse = basketStore.GetBasket(new RetrieveBasketRequest(_basketId));
 		}
 
 		[Test]

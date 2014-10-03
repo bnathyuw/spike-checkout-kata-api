@@ -2,15 +2,16 @@
 using System.Linq;
 using SpikeCheckoutKataApi.Web.Behaviour.AddItemToBasket;
 using SpikeCheckoutKataApi.Web.Behaviour.DeleteItemFromBasket;
+using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
 
 namespace SpikeCheckoutKataApi.Web.Adapters.Data
 {
 	public class ItemStore : IStoreItems, IDeleteItemsFromBaskets, IFindItemsByBasket
 	{
 		private static readonly List<ItemInStore> Items = new List<ItemInStore>();
-		private int _currentId;
+		private static int _currentId;
 
-		public IEnumerable<char> GetMatching(ICheckBasketMatches basket)
+		public IEnumerable<char> GetMatching(ISpecifyBasketToRetrieve basket)
 		{
 			return Items.Where(item => item.Matches((itemId, basketId) => basket.Matches(basketId)))
 			            .Select(CreateItemInBasket);
@@ -23,7 +24,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			return itemInStore.Create(CreateStoredItem);
 		}
 
-		private int GetNextId()
+		private static int GetNextId()
 		{
 			return ++_currentId;
 		}
@@ -33,7 +34,7 @@ namespace SpikeCheckoutKataApi.Web.Adapters.Data
 			return item.Create((id, basketId, code) => code);
 		}
 
-		private ItemInStore CreateItemInStore(char code, int basketId)
+		private static ItemInStore CreateItemInStore(char code, int basketId)
 		{
 			return new ItemInStore(code, basketId, GetNextId());
 		}

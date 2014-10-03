@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Web;
+using SpikeCheckoutKataApi.Web.Adapters.Data;
 using SpikeCheckoutKataApi.Web.Adapters.Http;
 
 namespace SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket
@@ -9,6 +10,7 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket
 	{
 		IEnumerable<char> Contents { get; }
 		string Shopper { get; }
+		Basket WithContents(IEnumerable<char> contents);
 	}
 
 	public interface ISpecifyBasketToRetrieve
@@ -30,17 +32,21 @@ namespace SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket
 	{
 		private readonly IGetBaskets _basketStore;
 		private readonly IReadRequests _requestReader;
+		private readonly IFindItemsByBasket _itemStore;
 
-		public Handler(IGetBaskets basketStore, IReadRequests requestReader)
+		public Handler(IGetBaskets basketStore, IReadRequests requestReader, IFindItemsByBasket itemStore)
 		{
 			_basketStore = basketStore;
 			_requestReader = requestReader;
+			_itemStore = itemStore;
 		}
 
 		public void ProcessRequest(HttpRequestBase httpRequestWrapper, HttpResponseBase httpResponse)
 		{
 			var getBasketRequest = _requestReader.Read(httpRequestWrapper);
-			var basketResponse = _basketStore.GetBasket(getBasketRequest);
+			var basket = _basketStore.GetBasket(getBasketRequest);
+			var basketContents = (_itemStore).GetMatching(getBasketRequest);
+			var basketResponse = (IBasketResponse) basket.WithContents(basketContents);
 			httpResponse.StatusCode = (int) HttpStatusCode.OK;
 			httpResponse.WriteBody(basketResponse);
 		}

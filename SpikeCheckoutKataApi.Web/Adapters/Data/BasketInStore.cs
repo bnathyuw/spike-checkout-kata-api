@@ -3,7 +3,7 @@
 	public delegate T CreateFromBasketInStore<out T>(int basketId, string shopper);
 	public delegate bool MatchesBasketInStore(int id);
 
-	public class BasketInStore : ICheckBasketMatches
+	public class BasketInStore
 	{
 		private readonly int _basketId;
 		private readonly string _shopper;

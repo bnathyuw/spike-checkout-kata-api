@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Web;
 using NUnit.Framework;
 using SpikeCheckoutKataApi.Web.Adapters.Data;
@@ -7,7 +8,7 @@ using SpikeCheckoutKataApi.Web.Behaviour.RetrieveBasket;
 namespace SpikeCheckoutKataApi.Tests.Behaviour.Retrieve_basket.Handler_tests
 {
 	[TestFixture]
-	public class When_all_goes_to_plan : HttpResponseBase, IReadRequests, IGetBaskets
+	public class When_all_goes_to_plan : HttpResponseBase, IReadRequests, IGetBaskets, IFindItemsByBasket
 	{
 		private int _statusCode;
 		private string _body;
@@ -16,7 +17,7 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Retrieve_basket.Handler_tests
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			var handler = new Handler(this, this);
+			var handler = new Handler(this, this, this);
 			handler.ProcessRequest(null, this);
 		}
 
@@ -44,12 +45,17 @@ namespace SpikeCheckoutKataApi.Tests.Behaviour.Retrieve_basket.Handler_tests
 
 		public IBasketResponse GetBasket(ISpecifyBasketToRetrieve request)
 		{
-			return new Basket("ABCDE".ToCharArray(), null);
+			return new Basket(null);
 		}
 
 		public override void Write(string body)
 		{
 			_body = body;
+		}
+
+		public IEnumerable<char> GetMatching(ISpecifyBasketToRetrieve basket)
+		{
+			return "ABCDE".ToCharArray();
 		}
 	}
 }
